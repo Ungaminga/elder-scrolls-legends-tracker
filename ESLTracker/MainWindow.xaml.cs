@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Messages;
 using ESLTracker.ViewModels;
+using ESLTracker.Utils.DeckFileReader;
+using ESLTracker.DataModel;
 
 namespace ESLTracker
 {
@@ -42,8 +44,8 @@ namespace ESLTracker
         {
             InitializeComponent();
             Task.Run( () =>  UpdateOverlayAsync(this));
+            Task.Run(() => ProcessExternalFielsUpdate(this));
             Application.Current.MainWindow = this;
-
             TrackerFactory.DefaultTrackerFactory.GetMessanger().Register<ApplicationShowBalloonTip>(this, ShowBaloonRequested);
 
         }
@@ -77,6 +79,28 @@ namespace ESLTracker
                 }
             });
             UpdateOverlay = false;
+        }
+        private static async Task ProcessExternalFielsUpdate(MainWindow mainWindow)
+        {
+            DeckFileReader dfr = new DeckFileReader();
+            for (;;)
+            {
+                HashSet<CardInstance> cards = new HashSet<CardInstance>();
+                bool reset = dfr.ReadSentFile(cards);
+                if (cards.Count() > 0)
+                {
+                    await mainWindow.Dispatcher.Invoke(async () =>
+                     {
+                         if (reset == false)
+                         {
+                             DeckFileReader.UpdateGui(cards, true);
+                             await Task.Delay(300);
+                         }
+                         DeckFileReader.UpdateGui(cards, false);
+                     });
+                }
+                await Task.Delay(100);
+            }
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

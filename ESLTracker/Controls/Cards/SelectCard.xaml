@@ -57,7 +57,9 @@
     <Button x:Name="LayoutRoot"
             HorizontalContentAlignment="Stretch" 
             ToolTipService.IsEnabled="{Binding CardInstance.Card, Converter={Converters:ObjectToBool}}"
-            Command="{Binding MouseLeftClick, ElementName=seletCard}" CommandParameter="{Binding CardInstance}">
+            Command="{Binding MouseLeftClick, ElementName=seletCard}" CommandParameter="{Binding CardInstance}"
+            Visibility="{Binding CardInstance.Visible, Converter={Converters:BoolToVisibilty}}"
+            Opacity="{Binding CardInstance.Opacity}">
         <DockPanel >
             <CheckBox DockPanel.Dock="Right" 
                   TabIndex="1" 
@@ -84,7 +86,7 @@
                 <Viewbox VerticalAlignment="Stretch" Height="Auto">
                     <TextBlock 
                     FontSize="13" Foreground="White"
-                    Text="{Binding CardInstance.Quantity}" 
+                    Text="{Binding CardInstance.OutputQuanity}" 
                      />
                 </Viewbox>
             </Border>
@@ -105,8 +107,8 @@
                 </Border>
                 <Border BorderBrush="{x:Null}" Background="{Binding CardInstance.BackgroundColor}"  Height="25" VerticalAlignment="Center">
                     <Label 
-                         Background="{x:Null}"  
-                         Style="{StaticResource ShadowText}"
+                        Background="{Binding CardInstance.Updated}"
+                        Style="{StaticResource ShadowText}"
                          Foreground="{Binding CardInstance.ForegroundColor}"                      
                          Content="{Binding Path=CardName}" 
                          MinWidth="180"

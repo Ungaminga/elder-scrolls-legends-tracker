@@ -24,6 +24,8 @@ namespace ESLTracker.DataModel
         private ITrackerFactory trackerFactory;
         private static ICardImageService cardImageService;
 
+        public static CardInstance Unknown { get { return new CardInstance(Card.Unknown); } }
+
         public Guid CardId
         {
             get
@@ -52,11 +54,56 @@ namespace ESLTracker.DataModel
         }
 
         private int quantity = 1;
+        private int played = 0;
+        public int Least { get { return quantity - played; } }
+
+        public void incPlayed() { if (played != quantity) played++; }
+        public void resetPlayed() { played = 0; }
 
         public int Quantity
         {
             get { return quantity; }
-            set { quantity = value; RaisePropertyChangedEvent(nameof(Quantity)); }
+            set { quantity = value; RaisePropertyChangedEvent(nameof(OutputQuanity)); }
+        }
+        public string OutputQuanity
+        {
+            get { return played == 0 ? quantity.ToString() : (Least.ToString() + "/" + quantity.ToString()); }
+        }
+
+        public bool Visible {
+            get
+            {
+                if (quantity == 1)
+                    return true;
+                return played != quantity;
+            }
+        }
+        public float Opacity
+        {
+            get
+            {
+                if (quantity == 1 && Least == 0)
+                    return 0.2f;
+                return Least* 1.0f / quantity;
+            }
+        }
+        private bool updated = false;
+        public string Updated
+        {
+            get {return updated ? "Red" : "";}
+        }
+
+        public void SendCardCountUpdated(bool sendRed)
+        {
+            if (sendRed)
+            {
+                updated = true;
+                RaisePropertyChangedEvent(nameof(Updated));
+                RaisePropertyChangedEvent(nameof(OutputQuanity));
+                updated = false;
+                return;
+            }
+            RaisePropertyChangedEvent("");
         }
 
         [XmlIgnore]

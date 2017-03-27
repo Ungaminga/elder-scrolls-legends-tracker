@@ -221,6 +221,7 @@
     <Compile Include="Services\Implementation\CardImageService.cs" />
     <Compile Include="Utils\Converters\CollectionCountToVisibility.cs" />
     <Compile Include="Utils\Converters\DebuggingConverter.cs" />
+    <Compile Include="Utils\DeckFileReader.cs" />
     <Compile Include="Utils\Converters\GameStatsRowVisibility.cs" />
     <Compile Include="Utils\Converters\InvertibleConverter.cs" />
     <Compile Include="Utils\Converters\MarkupConverter.cs" />
