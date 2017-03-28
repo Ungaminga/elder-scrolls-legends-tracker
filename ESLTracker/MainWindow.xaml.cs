@@ -17,6 +17,7 @@ using ESLTracker.Utils.Messages;
 using ESLTracker.ViewModels;
 using ESLTracker.Utils.DeckFileReader;
 using ESLTracker.DataModel;
+using ESLTracker.Utils.TriggerChanceUpdater;
 
 namespace ESLTracker
 {
@@ -83,10 +84,17 @@ namespace ESLTracker
         private static async Task ProcessExternalFielsUpdate(MainWindow mainWindow)
         {
             DeckFileReader dfr = new DeckFileReader();
+            {
+                HashSet<CardInstance> cards = new HashSet<CardInstance>();
+                new TriggerChanceUpdater(TrackerFactory.DefaultTrackerFactory.GetTracker().
+                                            ActiveDeck.SelectedVersion.Cards, cards);
+                mainWindow.Dispatcher.Invoke(() => DeckFileReader.UpdateGui(cards, false));
+            }
             for (;;)
             {
                 HashSet<CardInstance> cards = new HashSet<CardInstance>();
-                bool reset = dfr.ReadSentFile(cards);
+                HashSet<CardInstance> cards_silent = new HashSet<CardInstance>();
+                bool reset = dfr.ReadSentFile(cards, cards_silent);
                 if (cards.Count() > 0)
                 {
                     await mainWindow.Dispatcher.Invoke(async () =>
@@ -97,6 +105,7 @@ namespace ESLTracker
                              await Task.Delay(300);
                          }
                          DeckFileReader.UpdateGui(cards, false);
+                         DeckFileReader.UpdateGui(cards_silent, false);
                      });
                 }
                 await Task.Delay(100);

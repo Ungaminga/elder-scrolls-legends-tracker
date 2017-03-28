@@ -217,6 +217,7 @@
     <Compile Include="Services\ICardImageService.cs" />
     <Compile Include="Services\IVersionService.cs" />
     <Compile Include="Services\IResourcesService.cs" />
+    <Compile Include="Services\TriggerChanceUpdater.cs" />
     <Compile Include="Utils\ApplicationService.cs" />
     <Compile Include="Services\Implementation\CardImageService.cs" />
     <Compile Include="Utils\Converters\CollectionCountToVisibility.cs" />

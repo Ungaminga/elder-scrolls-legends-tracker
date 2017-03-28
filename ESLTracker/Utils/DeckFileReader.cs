@@ -1,4 +1,5 @@
 ﻿using ESLTracker.DataModel;
+using ESLTracker.DataModel.Enums;
 using LiveCharts.Helpers;
 using Microsoft.Win32;
 using System.Collections.Generic;
@@ -35,13 +36,15 @@ namespace ESLTracker.Utils.DeckFileReader
                     "player played mulligan_hand" };
         public static void UpdateGui(HashSet<CardInstance> cards, bool sendRed) { cards.ForEach(c => c.SendCardCountUpdated(sendRed)); }
 
-        public bool ReadSentFile(HashSet<CardInstance> cards)
+        public bool ReadSentFile(HashSet<CardInstance> cards, HashSet<CardInstance> cards_silent)
         {
             if (!File.Exists(sent_path))
                 return false;
 
             try
             {
+                PropertiesObservableCollection<CardInstance> activeDeck = TrackerFactory.DefaultTrackerFactory.GetTracker().
+                                            ActiveDeck.SelectedVersion.Cards;
                 string[] f = File.ReadAllLines(sent_path);
                 int i = f.Count() - 1;
                 for (; i > 0; --i)
@@ -58,12 +61,13 @@ namespace ESLTracker.Utils.DeckFileReader
                 {
                     if (f[i].Contains("=== Ended Match"))
                     {
-                        foreach (var c in TrackerFactory.DefaultTrackerFactory.GetTracker().
-                            ActiveDeck.SelectedVersion.Cards)
+                        foreach (var currentCard in activeDeck)
                         {
-                            c.resetPlayed();
-                            cards.Add(c);
+                            currentCard.resetPlayed();
+                            cards.Add(currentCard);
                         }
+                        new TriggerChanceUpdater.TriggerChanceUpdater(activeDeck);
+                        File.Delete(sent_path);
                         return true;
                     }
 
@@ -77,8 +81,7 @@ namespace ESLTracker.Utils.DeckFileReader
                                 continue;
                             int offset = f[i].IndexOf("card=") + ("card=").Length;
                             string played = f[i].Substring(offset);
-                            CardInstance currentCard = TrackerFactory.DefaultTrackerFactory.GetTracker().
-                                ActiveDeck.SelectedVersion.Cards.Where(ci => ci.Card.Name == played).
+                            CardInstance currentCard = activeDeck.Where(ci => ci.Card.Name == played).
                                 DefaultIfEmpty(CardInstance.Unknown).FirstOrDefault();
                             if (currentCard != CardInstance.Unknown)
                             {
@@ -87,6 +90,7 @@ namespace ESLTracker.Utils.DeckFileReader
                                 break;
                             }
                         }
+                        new TriggerChanceUpdater.TriggerChanceUpdater(activeDeck, cards_silent);
                     }
                     else
                         unused += f[i] + "\n";

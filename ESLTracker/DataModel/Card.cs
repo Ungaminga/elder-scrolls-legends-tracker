@@ -61,6 +61,8 @@ namespace ESLTracker.DataModel
 
         public string ImageName {get; set;}
 
+        public string TriggerType { get; set; }
+
         private ITrackerFactory trackerFactory;
 
         public Card() : this(TrackerFactory.DefaultTrackerFactory)

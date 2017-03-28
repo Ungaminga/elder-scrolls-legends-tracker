@@ -14,7 +14,7 @@ using ESLTracker.Services;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Extensions;
 using ESLTracker.ViewModels;
-
+using ESLTracker.DataModel.Enums;
 
 namespace ESLTracker.DataModel
 {
@@ -63,7 +63,7 @@ namespace ESLTracker.DataModel
         public int Quantity
         {
             get { return quantity; }
-            set { quantity = value; RaisePropertyChangedEvent(nameof(OutputQuanity)); }
+            set {quantity = value; RaisePropertyChangedEvent(nameof(OutputQuanity));}
         }
         public string OutputQuanity
         {
@@ -90,7 +90,20 @@ namespace ESLTracker.DataModel
         private bool updated = false;
         public string Updated
         {
-            get {return updated ? "Red" : "";}
+            get {return updated ? "Red" : "None";}
+        }
+        public string TriggerChance = "";
+        public string CardNameChance
+        {
+            get {
+                if (card == null)
+                    return "";
+                if (TriggerChance == "")
+                    return card.Name;
+
+                return "("+TriggerChance+"%) " + card.Name;
+            }
+            set { }
         }
 
         public void SendCardCountUpdated(bool sendRed)
@@ -100,6 +113,7 @@ namespace ESLTracker.DataModel
                 updated = true;
                 RaisePropertyChangedEvent(nameof(Updated));
                 RaisePropertyChangedEvent(nameof(OutputQuanity));
+                RaisePropertyChangedEvent(nameof(CardNameChance));
                 updated = false;
                 return;
             }

@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using ESLTracker.DataModel;
 using ESLTracker.Utils;
+using ESLTracker.Utils.TriggerChanceUpdater;
+using ESLTracker.Utils.DeckFileReader;
 
 namespace ESLTracker.ViewModels.Cards
 {
@@ -103,7 +105,9 @@ namespace ESLTracker.ViewModels.Cards
             {
                 trackerFactory.GetService<IDeckService>().EnforceCardLimit(card);
             }
-            NewCard = null;
+            HashSet<CardInstance> cards_silent = new HashSet<CardInstance>();
+            new TriggerChanceUpdater(CardsCollection, cards_silent);
+            DeckFileReader.UpdateGui(cards_silent, false);
         }
 
 
