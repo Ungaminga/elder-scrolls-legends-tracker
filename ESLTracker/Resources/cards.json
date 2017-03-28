@@ -27,7 +27,8 @@
             "attack": "0",
             "health": "1",
             "race": "woodelf",
-            "text": "Prophecy, Guard. Last Gasp: Adoring Fan will return. Adoring Fan can't be Silenced."
+            "text": "Prophecy, Guard. Last Gasp: Adoring Fan will return. Adoring Fan can't be Silenced.",
+            "triggertype": "prophecy"
         },
         {
             "id": "beadd0ce-4596-11e3-8f96-0800200c9a66",
@@ -508,7 +509,8 @@
             "attack": "3",
             "health": "3",
             "race": "woodelf",
-            "text": "Prophecy, Guard"
+            "text": "Prophecy, Guard",
+            "triggertype": "prophecy"
         },
         {
             "id": "27a2d0a9-3865-4f89-ad2e-766ab76d1b24",
@@ -716,7 +718,8 @@
             "attack": "2",
             "health": "4",
             "race": "breton",
-            "text": "Prophecy, Guard"
+            "text": "Prophecy, Guard",
+            "triggertype": "prophecy"
         },
         {
             "id": "5e26d8d3-f451-11e4-b939-0800200c9a66",
@@ -742,7 +745,8 @@
             "attack": "0",
             "health": "0",
             "race": "",
-            "text": "Prophecy. Return a creature to its owner's hand."
+            "text": "Prophecy. Return a creature to its owner's hand.",
+            "triggertype": "prophecy"
         },
         {
             "id": "33acb17d-300a-11e5-a2cb-0800200c9a66",
@@ -859,7 +863,8 @@
             "attack": "4",
             "health": "3",
             "race": "highelf",
-            "text": "Prophecy. Summon: Give a creature -4/-0 this turn."
+            "text": "Prophecy. Summon: Give a creature -4/-0 this turn.",
+            "triggertype": "prophecy"
         },
         {
             "id": "90431f42-94e0-11e3-baa8-0800200c9a66",
@@ -949,6 +954,7 @@
             "cost": "3",
             "attack": "3",
             "health": "3",
+            "triggertype": "ally",
             "race": "darkelf",
             "text": "Summon: Put a Firebolt into your hand if the top card of your deck is (Intelligence)."
         },
@@ -976,7 +982,8 @@
             "attack": "2",
             "health": "2",
             "race": "spirit",
-            "text": "Prophecy. Summon: Silence another creature."
+            "text": "Prophecy. Summon: Silence another creature.",
+            "triggertype": "prophecy"
         },
         {
             "id": "3cdeb5df-8f61-4eb9-919f-f0b8d61e7663",
@@ -1028,7 +1035,8 @@
             "attack": "2",
             "health": "2",
             "race": "khajiit",
-            "text": "Prophecy, Pilfer: +1/+1"
+            "text": "Prophecy, Pilfer: +1/+1",
+            "triggertype": "prophecy"
         },
         {
             "id": "51f31707-300a-11e5-a2cb-0800200c9a66",
@@ -1041,7 +1049,8 @@
             "attack": "2",
             "health": "4",
             "race": "dreugh",
-            "text": "Prophecy, Guard. Summon: Gain 4 health."
+            "text": "Prophecy, Guard. Summon: Gain 4 health.",
+            "triggertype": "prophecy"
         },
         {
             "id": "e2a07ba2-b3a9-11e3-a5e2-0800200c9a66",
@@ -1366,7 +1375,8 @@
             "attack": "3",
             "health": "1",
             "race": "khajiit",
-            "text": "Prophecy"
+            "text": "Prophecy",
+            "triggertype": "prophecy"
         },
         {
             "id": "630b3d42-8f17-4f67-9d2b-9ce98aefddbf",
@@ -1392,7 +1402,8 @@
             "attack": "3",
             "health": "1",
             "race": "khajiit",
-            "text": "Prophecy. Summon: Move another friendly creature in this lane."
+            "text": "Prophecy. Summon: Move another friendly creature in this lane.",
+            "triggertype": "prophecy"
         },
         {
             "id": "26a35f04-a6f9-4e90-8db8-c5688057ee61",
@@ -1717,7 +1728,8 @@
             "attack": "3",
             "health": "3",
             "race": "nereid",
-            "text": "Prophecy. Summon: Draw a card. If it has Prophecy you may play it for free."
+            "text": "Prophecy. Summon: Draw a card. If it has Prophecy you may play it for free.",
+            "triggertype": "prophecy"
         },
         {
             "id": "e967a7f2-a458-11e5-a837-0800200c9a66",
@@ -1730,7 +1742,8 @@
             "attack": "3",
             "health": "3",
             "race": "nereid",
-            "text": "Prophecy. Summon: Draw a card."
+            "text": "Prophecy. Summon: Draw a card.",
+            "triggertype": "prophecy"
         },
         {
             "id": "fd235b56-0afb-11e5-b939-0800200c9a66",
@@ -1782,7 +1795,8 @@
             "attack": "1",
             "health": "4",
             "race": "orc",
-            "text": "Prophecy, Guard"
+            "text": "Prophecy, Guard",
+            "triggertype": "prophecy"
         },
         {
             "id": "beafcc92-4596-11e3-8f96-0800200c9a66",
@@ -1821,7 +1835,8 @@
             "attack": "1",
             "health": "2",
             "race": "argonian",
-            "text": "Prophecy, Guard, Lethal"
+            "text": "Prophecy, Guard, Lethal",
+            "triggertype": "prophecy"
         },
         {
             "id": "13794be1-c4e8-11e3-9c1a-0800200c9a66",
@@ -1847,7 +1862,8 @@
             "attack": "0",
             "health": "0",
             "race": "",
-            "text": "Prophecy. Deal 2 damage to all creatures in one lane."
+            "text": "Prophecy. Deal 2 damage to all creatures in one lane.",
+            "triggertype": "prophecy"
         },
         {
             "id": "69e8b67c-87a1-11e3-baa7-0800200c9a66",
@@ -1951,7 +1967,8 @@
             "attack": "3",
             "health": "2",
             "race": "spider",
-            "text": "Prophecy, Lethal"
+            "text": "Prophecy, Lethal",
+            "triggertype": "prophecy"
         },
         {
             "id": "87e07786-4f58-11e6-beb8-9e71128cae77",
@@ -2107,7 +2124,8 @@
             "attack": "4",
             "health": "2",
             "race": "woodelf",
-            "text": "Prophecy. Summon: Deal 1 damage to all enemy creatures in this lane."
+            "text": "Prophecy. Summon: Deal 1 damage to all enemy creatures in this lane.",
+            "triggertype": "prophecy"
         },
         {
             "id": "112be60e-e814-4d62-96ad-4fa1258c4f7a",
@@ -2120,7 +2138,8 @@
             "attack": "4",
             "health": "1",
             "race": "orc",
-            "text": "Prophecy"
+            "text": "Prophecy",
+            "triggertype": "prophecy"
         },
         {
             "id": "85e58240-1143-11e5-b939-0800200c9a66",
@@ -2263,7 +2282,8 @@
             "attack": "0",
             "health": "0",
             "race": "",
-            "text": "Prophecy. Gain 5 health."
+            "text": "Prophecy. Gain 5 health.",
+            "triggertype": "prophecy"
         },
         {
             "id": "fbcc37f7-78b7-11e3-981f-0800200c9a66",
@@ -2822,7 +2842,8 @@
             "attack": "0",
             "health": "0",
             "race": "",
-            "text": "Prophecy. Deal 4 damage."
+            "text": "Prophecy. Deal 4 damage.",
+            "triggertype": "prophecy"
         },
         {
             "id": "fbcc5ef8-78b7-11e3-981f-0800200c9a66",
@@ -2874,7 +2895,8 @@
             "attack": "2",
             "health": "2",
             "race": "nord",
-            "text": "Prophecy. Summon: Give a creature +2/+2 and Guard."
+            "text": "Prophecy. Summon: Give a creature +2/+2 and Guard.",
+            "triggertype": "prophecy"
         },
         {
             "id": "33acb17f-300a-11e5-a2cb-0800200c9a66",
@@ -2913,7 +2935,8 @@
             "attack": "3",
             "health": "2",
             "race": "reptile",
-            "text": "Prophecy"
+            "text": "Prophecy",
+            "triggertype": "prophecy"
         },
         {
             "id": "075d555c-5c24-4fdc-9779-029cd03842c1",
@@ -2926,7 +2949,8 @@
             "attack": "2",
             "health": "6",
             "race": "mummy",
-            "text": "Prophecy, Guard"
+            "text": "Prophecy, Guard",
+            "triggertype": "prophecy"
         },
         {
             "id": "aab8e4b4-f7fc-11e3-a3ac-0800200c9a66",
@@ -3055,6 +3079,7 @@
             "cost": "3",
             "attack": "3",
             "health": "3",
+            "triggertype": "ally",
             "race": "dwemer",
             "text": "Summon: Summon a Spider Worker if the top card of your deck is (Neutral)."
         },
@@ -3108,7 +3133,8 @@
             "attack": "0",
             "health": "0",
             "race": "",
-            "text": "Prophecy. Summon a 2/2 Colovian Trooper with Guard in each lane."
+            "text": "Prophecy. Summon a 2/2 Colovian Trooper with Guard in each lane.",
+            "triggertype": "prophecy"
         },
         {
             "id": "51f3170d-300a-11e5-a2cb-0800200c9a66",
@@ -3120,6 +3146,7 @@
             "cost": "3",
             "attack": "3",
             "health": "3",
+            "triggertype": "ally",
             "race": "nord",
             "text": "Summon: +3/+0 and breakthrough if the top card of your deck is (Strength)."
         },
@@ -3173,7 +3200,8 @@
             "attack": "4",
             "health": "2",
             "race": "beast",
-            "text": "Prophecy, Drain"
+            "text": "Prophecy, Drain",
+            "triggertype": "prophecy"
         },
         {
             "id": "08662201-ff5d-11e4-b939-0800200c9a66",
@@ -3186,7 +3214,8 @@
             "attack": "2",
             "health": "2",
             "race": "orc",
-            "text": "Guard, Prophecy. Summon: Give a creature +2/+0."
+            "text": "Guard, Prophecy. Summon: Give a creature +2/+0.",
+            "triggertype": "prophecy"
         },
         {
             "id": "beb01ab5-4596-11e3-8f96-0800200c9a66",
@@ -3264,7 +3293,8 @@
             "attack": "0",
             "health": "0",
             "race": "",
-            "text": "Prophecy. Transform a creature into a 2/2 Shriveled Mummy."
+            "text": "Prophecy. Transform a creature into a 2/2 Shriveled Mummy.",
+            "triggertype": "prophecy"
         },
         {
             "id": "99c98990-b3a3-11e3-a5e2-0800200c9a66",
@@ -3497,6 +3527,7 @@
             "cost": "3",
             "attack": "3",
             "health": "3",
+            "triggertype": "ally",
             "race": "woodelf",
             "text": "Summon: +1/+1 and Lethal if the top card of your deck is (Agility)."
         },
@@ -3680,7 +3711,8 @@
             "attack": "0",
             "health": "0",
             "race": "",
-            "text": "Prophecy. Destroy a creature."
+            "text": "Prophecy. Destroy a creature.",
+            "triggertype": "prophecy"
         },
         {
             "id": "08662204-ff5d-11e4-b939-0800200c9a66",
@@ -3745,7 +3777,8 @@
             "attack": "0",
             "health": "9",
             "race": "defense",
-            "text": "Prophecy, Guard"
+            "text": "Prophecy, Guard",
+            "triggertype": "prophecy"
         },
         {
             "id": "fa4ffc63-d4b2-11e3-9c1a-0800200c9a66",
@@ -3771,7 +3804,8 @@
             "attack": "2",
             "health": "2",
             "race": "khajiit",
-            "text": "Prophecy. Summon: Gain 2 health."
+            "text": "Prophecy. Summon: Gain 2 health.",
+            "triggertype": "prophecy"
         },
         {
             "id": "0e06fa56-1112-11e5-b939-0800200c9a66",
@@ -3862,7 +3896,8 @@
             "attack": "0",
             "health": "0",
             "race": "",
-            "text": "Prophecy. Deal 3 damage and gain 3 health."
+            "text": "Prophecy. Deal 3 damage and gain 3 health.",
+            "triggertype": "prophecy"
         },
         {
             "id": "51f31708-300a-11e5-a2cb-0800200c9a66",
@@ -4004,6 +4039,7 @@
             "cost": "3",
             "attack": "3",
             "health": "3",
+            "triggertype": "ally",
             "race": "highelf",
             "text": "Summon: Give other friendly creatures in this lane +1/+1 if the top card of your deck is (Willpower)."
         },
@@ -4278,7 +4314,8 @@
             "attack": "1",
             "health": "1",
             "race": "woodelf",
-            "text": "Prophecy. Summon: Deal 1 damage."
+            "text": "Prophecy. Summon: Deal 1 damage.",
+            "triggertype": "prophecy"
         },
         {
             "id": "0cd25644-e227-11e3-8b68-0800200c9a66",
@@ -4343,7 +4380,8 @@
             "attack": "2",
             "health": "1",
             "race": "harpy",
-            "text": "Prophecy. Summon: Shackle an enemy creature."
+            "text": "Prophecy. Summon: Shackle an enemy creature.",
+            "triggertype": "prophecy"
         },
         {
             "id": "69e8b670-87a1-11e3-baa7-0800200c9a66",
@@ -4577,7 +4615,8 @@
             "attack": "2",
             "health": "3",
             "race": "dwemer",
-            "text": "Prophecy, Guard"
+            "text": "Prophecy, Guard",
+            "triggertype": "prophecy"
         },
         {
             "id": "0cd25641-e227-11e3-8b68-0800200c9a66",
@@ -4616,7 +4655,8 @@
             "attack": "0",
             "health": "1",
             "race": "dwemer",
-            "text": "Prophecy. Summon: Draw a card."
+            "text": "Prophecy. Summon: Draw a card.",
+            "triggertype": "prophecy"
         },
         {
             "id": "de25f382-7a23-11e3-981f-0800200c9a66",
@@ -4667,6 +4707,7 @@
             "cost": "3",
             "attack": "3",
             "health": "3",
+            "triggertype": "ally",
             "race": "argonian",
             "text": "Summon: +0/+2 and Guard if the top card of your deck is (Endurance)."
         },
@@ -4863,7 +4904,8 @@
             "attack": "0",
             "health": "0",
             "race": "",
-            "text": "Uses: 3. Activate: Shuffle all cards in your hand with Prophecy into your deck and draw that many cards. "
+            "text": "Uses: 3. Activate: Shuffle all cards in your hand with Prophecy into your deck and draw that many cards. ",
+            "triggertype": "prophecy"
         },
         {
             "id": "00f39958-52f0-11e3-8f96-0800200c9a66",
@@ -5162,7 +5204,8 @@
             "attack": "4",
             "health": "2",
             "race": "woodelf",
-            "text": "Prophecy"
+            "text": "Prophecy",
+            "triggertype": "prophecy"
         },
         {
             "id": "08662205-ff5d-11e4-b939-0800200c9a66",
@@ -5188,7 +5231,8 @@
             "attack": "5",
             "health": "4",
             "race": "nord",
-            "text": "Prophecy, Breakthrough, Guard"
+            "text": "Prophecy, Breakthrough, Guard",
+            "triggertype": "prophecy"
         },
         {
             "id": "fd233440-0afb-11e5-b939-0800200c9a66",
@@ -5474,7 +5518,8 @@
             "attack": "0",
             "health": "0",
             "race": "",
-            "text": "Prophecy. Give all friendly creatures a random keyword."
+            "text": "Prophecy. Give all friendly creatures a random keyword.",
+            "triggertype": "prophecy"
         },
         {
             "id": "3a751800-e810-11e3-ac10-0800200c9a66",
