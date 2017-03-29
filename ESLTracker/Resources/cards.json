@@ -14,7 +14,8 @@
             "attack": "3",
             "health": "1",
             "race": "highelf",
-            "text": "Summon: If the top card of your deck is an action, draw it. Otherwise, put it on the bottom."
+            "text": "Summon: If the top card of your deck is an action, draw it. Otherwise, put it on the bottom.",
+			"triggertype": "action_draw"
         },
         {
             "id": "51f31711-300a-11e5-a2cb-0800200c9a66",

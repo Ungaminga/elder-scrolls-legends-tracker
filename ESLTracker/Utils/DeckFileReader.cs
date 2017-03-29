@@ -33,8 +33,9 @@ namespace ESLTracker.Utils.DeckFileReader
 
         private static readonly string[] draw_from_deck = { "player played medallion_presentRight",
                     "player played deck_present",
-                    "player played mulligan_hand" };
-        public static void UpdateGui(HashSet<CardInstance> cards, bool sendRed) { cards.ForEach(c => c.SendCardCountUpdated(sendRed)); }
+                    "player played mulligan_hand",
+                    "player played surgeStart_reactionPile" };
+        public static void UpdateGui(HashSet<CardInstance> cards, bool sendRed) { cards.ForEach(c => c.SendCardUpdated(sendRed)); }
 
         public bool ReadSentFile(HashSet<CardInstance> cards, HashSet<CardInstance> cards_silent)
         {
@@ -81,6 +82,20 @@ namespace ESLTracker.Utils.DeckFileReader
                                 continue;
                             int offset = f[i].IndexOf("card=") + ("card=").Length;
                             string played = f[i].Substring(offset);
+
+                            // only for played prophecy spells
+                            if (draw_string == "player played surgeStart_reactionPile")
+                            {
+                                // don't allow read if that called last one
+                                if (i == f.Count() - 1)
+                                    return false;
+                                    var prophecy = f[i + 1];
+                                if (prophecy.Contains("someone played DefaultLerp card"))
+                                {
+                                    offset = f[i+1].IndexOf("card=") + ("card=").Length;
+                                    played = f[i+1].Substring(offset);
+                                }
+                            }
                             CardInstance currentCard = activeDeck.Where(ci => ci.Card.Name == played).
                                 DefaultIfEmpty(CardInstance.Unknown).FirstOrDefault();
                             if (currentCard != CardInstance.Unknown)

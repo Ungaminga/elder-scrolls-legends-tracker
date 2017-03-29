@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ESLTracker.DataModel;
 using System.Text.RegularExpressions;
+using System.Collections.ObjectModel;
 
 namespace ESLTracker.Utils
 {
@@ -78,6 +79,9 @@ namespace ESLTracker.Utils
                     Cards.Add(cardInstance);
                 }
             }
+            HashSet<CardInstance> cards_silent = new HashSet<CardInstance>() ;
+            new TriggerChanceUpdater.TriggerChanceUpdater(new ObservableCollection<CardInstance>(Cards), cards_silent);
+            DeckFileReader.DeckFileReader.UpdateGui(cards_silent, false);
         }
 
         internal void CancelImport()

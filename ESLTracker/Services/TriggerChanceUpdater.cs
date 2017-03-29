@@ -28,8 +28,6 @@ namespace ESLTracker.Utils.TriggerChanceUpdater
                                 if (jtr.Card.Attributes.Contains(color))
                                     count += jtr.Least;
                             }
-                            // minus self for chance playing
-                            count = count - 1;
                             itr.TriggerChance = Math.Round(count * 100.0f / total, 2).ToString();
                             if (to_update != null)
                                 to_update.Add(itr);
@@ -40,6 +38,16 @@ namespace ESLTracker.Utils.TriggerChanceUpdater
                             itr.TriggerChance = Math.Round(itr.Least * 100.0f / total, 2).ToString();
                             if (to_update != null)
                                 to_update.Add(itr);
+                            break;
+                        }
+                    case "action_draw":
+                        {
+                            int count = 0;
+                            foreach (var jtr in cards)
+                                if (jtr.Card.Type == CardType.Action)
+                                    count += jtr.Least;
+
+                            itr.TriggerChance = Math.Round(count * 100.0f / total, 2).ToString();
                             break;
                         }
                     default: break;

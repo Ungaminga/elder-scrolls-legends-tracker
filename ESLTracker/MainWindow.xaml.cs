@@ -99,12 +99,15 @@ namespace ESLTracker
                 {
                     await mainWindow.Dispatcher.Invoke(async () =>
                      {
+                         // Play red
                          if (reset == false)
                          {
                              DeckFileReader.UpdateGui(cards, true);
                              await Task.Delay(300);
                          }
+                         // Stop red and update fields
                          DeckFileReader.UpdateGui(cards, false);
+                         // Play silent (trigger chances)
                          DeckFileReader.UpdateGui(cards_silent, false);
                      });
                 }

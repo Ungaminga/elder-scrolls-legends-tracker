@@ -106,7 +106,7 @@ namespace ESLTracker.DataModel
             set { }
         }
 
-        public void SendCardCountUpdated(bool sendRed)
+        public void SendCardUpdated(bool sendRed)
         {
             if (sendRed)
             {
