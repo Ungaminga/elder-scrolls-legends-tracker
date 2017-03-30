@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ESLTracker.DataModel;
 using System.Text.RegularExpressions;
 using System.Collections.ObjectModel;
+using System.IO;
 
 namespace ESLTracker.Utils
 {
@@ -37,7 +38,7 @@ namespace ESLTracker.Utils
 
             try
             {
-                await Task.Run(() => ImportFromTextProcess(importData)); 
+                await Task.Run(() => ImportFromTextProcess(importData));
 
                 taskCompletonSource.SetResult(true);
             }
@@ -49,6 +50,9 @@ namespace ESLTracker.Utils
 
         private void ImportFromTextProcess(string importData)
         {
+            if (importData == null)
+                return;
+
             foreach (string cardLine in importData.Split(new string[] { Environment.NewLine },
                                                      StringSplitOptions.RemoveEmptyEntries))
             {
@@ -84,6 +88,26 @@ namespace ESLTracker.Utils
             DeckFileReader.DeckFileReader.UpdateGui(cards_silent, false);
         }
 
+        public async Task ImportFromFile()
+        {
+            Cards = new List<CardInstance>();
+            sbErrors.Clear();
+
+            try
+            {
+                await Task.Run(() => ImportFromFileProcess());
+            }
+            catch (Exception ex)
+            {
+                taskCompletonSource.SetException(ex);
+            }
+        }
+
+        private void ImportFromFileProcess()
+        {
+            string path = Path.Combine(TrackerFactory.DefaultTrackerFactory.GetTracker().dfr.game_path, "deck.txt");
+            ImportFromTextProcess(File.ReadAllText(path));
+        }
         internal void CancelImport()
         {
             taskCompletonSource.TrySetResult(false);

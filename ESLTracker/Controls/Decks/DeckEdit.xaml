@@ -20,7 +20,8 @@
     <DockPanel>
         <DockPanel DockPanel.Dock="Top">
             <Menu FontSize="14" DockPanel.Dock="Top">
-                <MenuItem Header="Import" Command="{Binding CommandImport}" CommandParameter="{Binding DataContext.DeckImporter, ElementName=importControl}"/>
+                <MenuItem Header="Import Current" Command="{Binding CommandImport}" CommandParameter="{Binding DataContext.DeckImporter, ElementName=importControl}"/>
+                <MenuItem Header="Custom Import" Command="{Binding CommandCustomImport}" CommandParameter="{Binding DataContext.DeckImporter, ElementName=importControl}"/>
                 <MenuItem Header="Cancel" Command="{Binding CommandCancel}"/>
                 <MenuItem Header="Save"
                           Command="{Binding CommandSave}"

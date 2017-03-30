@@ -10,6 +10,7 @@ using ESLTracker.DataModel.Enums;
 using ESLTracker.Properties;
 using ESLTracker.Utils;
 using ESLTracker.Utils.Messages;
+using ESLTracker.Utils.DeckFileReader;
 
 namespace ESLTracker.DataModel
 {
@@ -28,6 +29,7 @@ namespace ESLTracker.DataModel
             }
         }
 
+        public DeckFileReader dfr { get; set; } = new DeckFileReader();
         public ObservableCollection<Game> Games { get; set; } = new ObservableCollection<Game>();
         public ObservableCollection<Deck> Decks { get; set; } = new ObservableCollection<Deck>();
         public ObservableCollection<Pack> Packs { get; set; } = new ObservableCollection<Pack>();

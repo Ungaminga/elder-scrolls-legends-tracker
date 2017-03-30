@@ -45,7 +45,7 @@ namespace ESLTracker
         {
             InitializeComponent();
             Task.Run( () =>  UpdateOverlayAsync(this));
-            Task.Run(() => ProcessExternalFielsUpdate(this));
+            Task.Run(() => ProcessExternalFilesUpdate(this));
             Application.Current.MainWindow = this;
             TrackerFactory.DefaultTrackerFactory.GetMessanger().Register<ApplicationShowBalloonTip>(this, ShowBaloonRequested);
 
@@ -81,9 +81,10 @@ namespace ESLTracker
             });
             UpdateOverlay = false;
         }
-        private static async Task ProcessExternalFielsUpdate(MainWindow mainWindow)
+        private static async Task ProcessExternalFilesUpdate(MainWindow mainWindow)
         {
-            DeckFileReader dfr = new DeckFileReader();
+            DeckFileReader dfr = TrackerFactory.DefaultTrackerFactory.GetTracker().dfr;
+            if (TrackerFactory.DefaultTrackerFactory.GetTracker().ActiveDeck != null)
             {
                 HashSet<CardInstance> cards = new HashSet<CardInstance>();
                 new TriggerChanceUpdater(TrackerFactory.DefaultTrackerFactory.GetTracker().

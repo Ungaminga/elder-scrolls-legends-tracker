@@ -15,6 +15,9 @@ namespace ESLTracker.Utils.Messages
         {
             this.ActiveDeck = activeDeck;
 
+            if (activeDeck == null)
+                return;
+
             HashSet<CardInstance> cards_silent = new HashSet<CardInstance>();
             new TriggerChanceUpdater.TriggerChanceUpdater(activeDeck.SelectedVersion.Cards, cards_silent);
             DeckFileReader.DeckFileReader.UpdateGui(cards_silent, false);

@@ -75,7 +75,7 @@ namespace ESLTracker.Utils
             {
                 connection.ConnectionString = "Data Source = " + path;
                 connection.Open();
-                SQLiteCommand command = new SQLiteCommand("SELECT * FROM 'Lookup' ORDER BY value ASC; ", connection);
+                SQLiteCommand command = new SQLiteCommand("SELECT * FROM Lookup WHERE \"key\" LIKE \"%-title\" OR \"key\" LIKE \"%-game_text\";", connection);
                 SQLiteDataReader reader = command.ExecuteReader();
                 foreach (DbDataRecord record in reader)
                 {

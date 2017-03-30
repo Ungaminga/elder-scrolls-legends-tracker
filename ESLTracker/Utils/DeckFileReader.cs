@@ -18,16 +18,16 @@ namespace ESLTracker.Utils.DeckFileReader
                 const string regdir =
                     @"HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\The Elder Scrolls Legends";
 
-                string path = ((string)Registry.GetValue(regdir, "Path", "")).Replace("\"", "");
-                sent_path = Path.Combine(path, "sent.txt");
-                sent_unused = Path.Combine(path, "sent_unused.txt");
+                game_path = ((string)Registry.GetValue(regdir, "Path", "")).Replace("\"", "");
+                sent_path = Path.Combine(game_path, "sent.txt");
+                sent_unused = Path.Combine(game_path, "sent_unused.txt");
             }
             catch (System.Exception ex)
             {
                 throw ex;
             }
         }
-
+        public string game_path;
         private string sent_path;
         private string sent_unused;
 

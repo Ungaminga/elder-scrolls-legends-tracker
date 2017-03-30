@@ -43,6 +43,13 @@ namespace ESLTracker.ViewModels.Decks
                 return new RelayCommand(CommandCancelExecute);
             }
         }
+        public ICommand CommandCustomImport
+        {
+            get
+            {
+                return new RealyAsyncCommand<object>(CommandCustomImportExecute);
+            }
+        }
         public ICommand CommandImport
         {
             get
@@ -50,7 +57,6 @@ namespace ESLTracker.ViewModels.Decks
                 return new RealyAsyncCommand<object>(CommandImportExecute);
             }
         }
-
         public bool AllowVersionSave
         {
             get
@@ -72,7 +78,7 @@ namespace ESLTracker.ViewModels.Decks
         {
             get
             {
-                return string.Format("Major changes ({0}.0)", GetMaxMajor()+1);
+                return string.Format("Major changes ({0}.0)", GetMaxMajor() + 1);
             }
         }
 
@@ -101,7 +107,7 @@ namespace ESLTracker.ViewModels.Decks
                     CurrentVersion.Cards.CollectionChanged += (s, e) => { RaisePropertyChangedEvent(nameof(ChangesFromCurrentVersion)); };
                 }
                 RaisePropertyChangedEvent(nameof(CurrentVersion));
-                RaisePropertyChangedEvent(nameof(SaveCurrentLabel));                
+                RaisePropertyChangedEvent(nameof(SaveCurrentLabel));
             }
         }
 
@@ -341,8 +347,18 @@ namespace ESLTracker.ViewModels.Decks
             return deckToCheck?.Type == DataModel.Enums.DeckType.Constructed;
         }
 
-
         private async Task<object> CommandImportExecute(object obj)
+        {
+            DeckImporter deckImporter = obj as DeckImporter;
+            await deckImporter.ImportFromFile();
+            deck.SelectedVersion.Cards = new PropertiesObservableCollection<CardInstance>(deckImporter.Cards);
+            //curr version shour equal deck.selected version, attch change to reflect clink for remove in deck history
+            CurrentVersion.Cards.CollectionChanged += (s, e) => { RaisePropertyChangedEvent(nameof(ChangesFromCurrentVersion)); };
+            RaisePropertyChangedEvent(String.Empty);
+            return null;
+
+        }
+        private async Task<object> CommandCustomImportExecute(object obj)
         {
             this.ShowImportPanel = true;
 

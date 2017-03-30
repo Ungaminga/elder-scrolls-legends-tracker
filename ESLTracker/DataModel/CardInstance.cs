@@ -73,7 +73,7 @@ namespace ESLTracker.DataModel
         public bool Visible {
             get
             {
-                if (quantity == 1)
+                if (quantity == 1 || (TriggerChance != "" && TriggerChance != "0"))
                     return true;
                 return played != quantity;
             }
