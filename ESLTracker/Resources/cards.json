@@ -1,7 +1,7 @@
 {
-    "Version": "0.6",
-    "VersionInfo": "February 2017 monthly reward",
-    "VersionDate": "2017-02-28T00:00:00.000Z",
+    "Version": "0.7",
+    "VersionInfo": "March 2017 monthly reward",
+    "VersionDate": "2017-03-30T00:00:00.000Z",
     "Cards": [
         {
             "id": "7e686205-20ce-11e5-867f-0800200c9a66",
@@ -15,7 +15,7 @@
             "health": "1",
             "race": "highelf",
             "text": "Summon: If the top card of your deck is an action, draw it. Otherwise, put it on the bottom.",
-			"triggertype": "action_draw"
+            "triggertype": "action_draw"
         },
         {
             "id": "51f31711-300a-11e5-a2cb-0800200c9a66",
@@ -955,9 +955,9 @@
             "cost": "3",
             "attack": "3",
             "health": "3",
-            "triggertype": "ally",
             "race": "darkelf",
-            "text": "Summon: Put a Firebolt into your hand if the top card of your deck is (Intelligence)."
+            "text": "Summon: Put a Firebolt into your hand if the top card of your deck is (Intelligence).",
+            "triggertype": "ally"
         },
         {
             "id": "69e88f6b-87a1-11e3-baa7-0800200c9a66",
@@ -3080,9 +3080,9 @@
             "cost": "3",
             "attack": "3",
             "health": "3",
-            "triggertype": "ally",
             "race": "dwemer",
-            "text": "Summon: Summon a Spider Worker if the top card of your deck is (Neutral)."
+            "text": "Summon: Summon a Spider Worker if the top card of your deck is (Neutral).",
+            "triggertype": "ally"
         },
         {
             "id": "6e151043-f451-11e4-b939-0800200c9a66",
@@ -3147,9 +3147,9 @@
             "cost": "3",
             "attack": "3",
             "health": "3",
-            "triggertype": "ally",
             "race": "nord",
-            "text": "Summon: +3/+0 and breakthrough if the top card of your deck is (Strength)."
+            "text": "Summon: +3/+0 and breakthrough if the top card of your deck is (Strength).",
+            "triggertype": "ally"
         },
         {
             "id": "20b9b7e3-66b6-11e3-949a-0800200c9a66",
@@ -3528,9 +3528,9 @@
             "cost": "3",
             "attack": "3",
             "health": "3",
-            "triggertype": "ally",
             "race": "woodelf",
-            "text": "Summon: +1/+1 and Lethal if the top card of your deck is (Agility)."
+            "text": "Summon: +1/+1 and Lethal if the top card of your deck is (Agility).",
+            "triggertype": "ally"
         },
         {
             "id": "0cd25652-e227-11e3-8b68-0800200c9a66",
@@ -4040,9 +4040,9 @@
             "cost": "3",
             "attack": "3",
             "health": "3",
-            "triggertype": "ally",
             "race": "highelf",
-            "text": "Summon: Give other friendly creatures in this lane +1/+1 if the top card of your deck is (Willpower)."
+            "text": "Summon: Give other friendly creatures in this lane +1/+1 if the top card of your deck is (Willpower).",
+            "triggertype": "ally"
         },
         {
             "id": "0e06fa59-1112-11e5-b939-0800200c9a66",
@@ -4606,6 +4606,19 @@
             "text": "Summon: If you have more health than your opponent, the next card you play this turn costs 6 less."
         },
         {
+            "id": "4c7d1cca-c22c-11e6-a4a6-cec0c932ce01",
+            "name": "Sower of Revenge",
+            "rarity": "Epic",
+            "isunique": false,
+            "type": "creature",
+            "attributes": "strength,endurance",
+            "cost": "5",
+            "attack": "5",
+            "health": "5",
+            "race": "daedra",
+            "text": "Guard.\r\n Last Gasp: Deals 5 damage to enemy player."
+        },
+        {
             "id": "20b9b7e0-66b6-11e3-949a-0800200c9a66",
             "name": "Sparking Spider",
             "rarity": "Common",
@@ -4708,9 +4721,9 @@
             "cost": "3",
             "attack": "3",
             "health": "3",
-            "triggertype": "ally",
             "race": "argonian",
-            "text": "Summon: +0/+2 and Guard if the top card of your deck is (Endurance)."
+            "text": "Summon: +0/+2 and Guard if the top card of your deck is (Endurance).",
+            "triggertype": "ally"
         },
         {
             "id": "1232d5de-d468-11e6-bf26-cec0c932ce01",
