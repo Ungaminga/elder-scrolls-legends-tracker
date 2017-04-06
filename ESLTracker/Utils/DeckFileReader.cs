@@ -41,6 +41,8 @@ namespace ESLTracker.Utils.DeckFileReader
         {
             if (!File.Exists(sent_path))
                 return false;
+            if (TrackerFactory.DefaultTrackerFactory.GetTracker().ActiveDeck == null)
+                return false;
 
             try
             {
