@@ -32,6 +32,17 @@ namespace ESLTracker.Utils
             { DeckClass.Warrior, new DeckAttributes(DeckClass.Warrior) { DeckAttribute.Strength, DeckAttribute.Endurance}}
         };
 
+        public static DeckClass getClassFromCards(PropertiesObservableCollection<CardInstance> cards)
+        {
+            HashSet<DeckAttribute> attributes = new HashSet<DeckAttribute>();
+            foreach (CardInstance card in cards)
+            {
+                foreach (DeckAttribute attr in card.Card.Attributes)
+                    if (attr != DeckAttribute.Neutral)
+                        attributes.Add(attr);
+            }
+            return FindClassByAttribute(attributes).DefaultIfEmpty(DeckClass.Neutral).FirstOrDefault();
+        }
         public static Dictionary<DeckClass, DeckAttributes> Classes
         {
             get

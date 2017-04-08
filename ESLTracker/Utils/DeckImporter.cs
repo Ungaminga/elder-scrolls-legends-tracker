@@ -103,10 +103,10 @@ namespace ESLTracker.Utils
             }
         }
 
-        private void ImportFromFileProcess()
+        public void ImportFromFileProcess(string path = "deck.txt")
         {
-            string path = Path.Combine(TrackerFactory.DefaultTrackerFactory.GetTracker().dfr.game_path, "deck.txt");
-            ImportFromTextProcess(File.ReadAllText(path));
+            string full_path = Path.Combine(TrackerFactory.DefaultTrackerFactory.GetTracker().dfr.game_path, path);
+            ImportFromTextProcess(File.ReadAllText(full_path));
         }
         internal void CancelImport()
         {

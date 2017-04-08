@@ -96,6 +96,18 @@ namespace ESLTracker
                 HashSet<CardInstance> cards = new HashSet<CardInstance>();
                 HashSet<CardInstance> cards_silent = new HashSet<CardInstance>();
                 bool reset = dfr.ReadSentFile(cards, cards_silent);
+                if (cards.Count() == 0 && dfr.isGameStarted() == false)
+                {
+                    if (dfr.ReadDecks())
+                    {
+                        mainWindow.Dispatcher.Invoke(() =>
+                        {
+                            TrackerFactory.DefaultTrackerFactory.GetMessanger()
+                            .Send<DeckListResetFilters>(new DeckListResetFilters(), ControlMessangerContext.DeckList_DeckFilterControl);
+                        });
+                        TrackerFactory.DefaultTrackerFactory.GetFileManager().SaveDatabase();
+                    }
+                }
                 if (cards.Count() > 0)
                 {
                     await mainWindow.Dispatcher.Invoke(async () =>
@@ -112,7 +124,7 @@ namespace ESLTracker
                          DeckFileReader.UpdateGui(cards_silent, false);
                      });
                 }
-                await Task.Delay(100);
+                await Task.Delay(dfr.isGameStarted() ? 100: 1000);
             }
         }
 
