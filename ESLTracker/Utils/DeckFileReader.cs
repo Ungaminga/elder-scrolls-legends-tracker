@@ -8,6 +8,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Security.Cryptography;
+using System.Text;
+using System;
 
 namespace ESLTracker.Utils.DeckFileReader
 {
@@ -24,18 +27,22 @@ namespace ESLTracker.Utils.DeckFileReader
                 sent_path = Path.Combine(game_path, "sent.txt");
                 sent_unused = Path.Combine(game_path, "sent_unused.txt");
                 decks_directory = Path.Combine(game_path, "decks");
+                game_src_lib = Path.Combine(game_path, "The Elder Scrolls Legends_Data\\Managed\\game-src.dll");
             }
             catch (System.Exception ex)
             {
                 throw ex;
             }
         }
-        public string game_path;
+        public readonly string game_path;
         private string sent_path;
         private string sent_unused;
         private string decks_directory;
+        public readonly string game_src_lib;
+
         private bool game_started = false;
         public bool isGameStarted() { return game_started; }
+
         private static readonly string[] draw_from_deck = { "player played medallion_presentRight",
                     "player played deck_present",
                     "player played mulligan_hand",
@@ -166,6 +173,25 @@ namespace ESLTracker.Utils.DeckFileReader
             deckImporter.Cards = new List<CardInstance>();
             deckImporter.ImportFromFileProcess(Path.Combine("decks", deck.Name+".txt"));
             deck.SelectedVersion.Cards = new PropertiesObservableCollection<CardInstance>(deckImporter.Cards);
+        }
+
+        public bool NeedToModifyDlls()
+        {
+            if (File.Exists(game_src_lib) == false)
+                return false;
+
+            // Using File.ReadLines().First() due to md5 software produces newline
+            String md5_orig = File.ReadLines(".\\Resources\\TES-L-Modifided-dll\\md5-orig.txt").First();
+
+            var md5 = MD5.Create();
+            var stream = File.OpenRead(game_src_lib);
+            String hash = BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", "");
+            stream.Close();
+ 
+            if (hash == md5_orig)
+                return true;
+
+            return false;
         }
     }
 }

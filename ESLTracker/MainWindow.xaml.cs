@@ -18,6 +18,7 @@ using ESLTracker.ViewModels;
 using ESLTracker.Utils.DeckFileReader;
 using ESLTracker.DataModel;
 using ESLTracker.Utils.TriggerChanceUpdater;
+using System.IO;
 
 namespace ESLTracker
 {
@@ -44,6 +45,7 @@ namespace ESLTracker
         public MainWindow()
         {
             InitializeComponent();
+            CheckModifiedDlls();
             Task.Run( () =>  UpdateOverlayAsync(this));
             Task.Run(() => ProcessExternalFilesUpdate(this));
             Application.Current.MainWindow = this;
@@ -128,6 +130,23 @@ namespace ESLTracker
             }
         }
 
+        private void CheckModifiedDlls()
+        {
+            DeckFileReader dfr = TrackerFactory.DefaultTrackerFactory.GetTracker().dfr;
+            if (dfr.NeedToModifyDlls() == false)
+                return;
+            
+            if (MessageBox.Show("This program needs to modify your game DLLs. It's legit.", "Modify your DLLs?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                try { File.Copy(".\\Resources\\TES-L-Modifided-dll\\game-src.dll", dfr.game_src_lib, true); }
+                catch (IOException e) {
+                    MessageBox.Show(e.Message);
+                    return;
+                }
+
+                MessageBox.Show("Restart your game now.");
+            }
+        }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (! ((App)Application.Current).IsApplicationClosing)
