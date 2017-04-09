@@ -105,8 +105,8 @@ namespace ESLTracker
                         mainWindow.Dispatcher.Invoke(() =>
                         {
                             TrackerFactory.DefaultTrackerFactory.GetMessanger()
-                            .Send<DeckListResetFilters>(new DeckListResetFilters(), ControlMessangerContext.DeckList_DeckFilterControl);
-                        });
+                            .Send(new DeckListResetFilters(), ControlMessangerContext.DeckList_DeckFilterControl);
+                       });
                         TrackerFactory.DefaultTrackerFactory.GetFileManager().SaveDatabase();
                     }
                 }

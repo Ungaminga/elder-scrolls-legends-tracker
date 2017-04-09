@@ -151,6 +151,7 @@ namespace ESLTracker.Utils.DeckFileReader
                     {
                         ImportForDeck(itr);
                         found = true;
+                        ret_value = true;
                         break;
                     }
                 }
