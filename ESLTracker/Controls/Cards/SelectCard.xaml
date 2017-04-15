@@ -71,7 +71,7 @@
                   Visibility="{Binding ShowIsPremium, Converter={Converters:BoolToVisibilty}, ConverterParameter=Collapsed}"
                   IsEnabled="{Binding ReadOnlyNot}"
                   IsChecked="{Binding CardInstance.IsPremium, Mode=TwoWay}"/>
-            <Border CornerRadius="45"
+            <Border CornerRadius="0"
                     DockPanel.Dock="Right"
                     Width="25"
                     Height="25"
@@ -91,7 +91,7 @@
                 </Viewbox>
             </Border>
             <Grid Height="25" VerticalAlignment="Center" Margin="10,0,0,0">
-                <Border CornerRadius="45"
+                <Border CornerRadius="0"
                         Width="25"
                         Height="25"
                         Margin="-10,0,0,0"
