@@ -2357,7 +2357,7 @@
             "rarity": "Rare",
             "isunique": false,
             "type": "support",
-            "attributes": "intelligence",
+            "attributes": "neutral",
             "cost": "3",
             "attack": "0",
             "health": "0",
