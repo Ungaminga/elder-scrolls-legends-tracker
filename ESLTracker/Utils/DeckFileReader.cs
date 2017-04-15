@@ -28,6 +28,7 @@ namespace ESLTracker.Utils.DeckFileReader
                 sent_unused = Path.Combine(game_path, "sent_unused.txt");
                 decks_directory = Path.Combine(game_path, "decks");
                 game_src_lib = Path.Combine(game_path, "The Elder Scrolls Legends_Data\\Managed\\game-src.dll");
+                deck_selection = Path.Combine(game_path, "deck_selection.txt");
             }
             catch (System.Exception ex)
             {
@@ -39,6 +40,7 @@ namespace ESLTracker.Utils.DeckFileReader
         private string sent_unused;
         private string decks_directory;
         public readonly string game_src_lib;
+        private string deck_selection;
 
         private bool game_started = false;
         public bool isGameStarted() { return game_started; }
@@ -193,6 +195,24 @@ namespace ESLTracker.Utils.DeckFileReader
                 return true;
 
             return false;
+        }
+        public Deck UpdateActiveDeck()
+        {
+            if (File.Exists(deck_selection) == false)
+                return null;
+
+            string active_deck_s = File.ReadAllText(deck_selection);
+            File.Delete(deck_selection);
+            ITracker tracker = TrackerFactory.DefaultTrackerFactory.GetTracker();
+            if (tracker.ActiveDeck != null && tracker.ActiveDeck.Name == active_deck_s)
+                return null;
+            
+            foreach (Deck deck in tracker.Decks)
+                if (deck.Name == active_deck_s)
+                {
+                    return deck;
+                }
+            return null;
         }
     }
 }

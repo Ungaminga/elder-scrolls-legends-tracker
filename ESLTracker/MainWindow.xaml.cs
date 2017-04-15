@@ -109,6 +109,15 @@ namespace ESLTracker
                        });
                         TrackerFactory.DefaultTrackerFactory.GetFileManager().SaveDatabase();
                     }
+                    Deck active_deck = dfr.UpdateActiveDeck();
+                    if (active_deck != null)
+                    {
+                        mainWindow.Dispatcher.Invoke(() =>
+                        {
+                            TrackerFactory.DefaultTrackerFactory.GetTracker().ActiveDeck = active_deck;
+                        });
+                    }
+                        
                 }
                 if (cards.Count() > 0)
                 {
