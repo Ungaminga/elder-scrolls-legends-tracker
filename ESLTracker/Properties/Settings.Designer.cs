@@ -274,7 +274,22 @@ namespace ESLTracker.Properties {
                 this["OverlayDeck_ShowOnStart"] = value;
             }
         }
-        
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool OverlayForStreams_ShowOnStart
+        {
+            get
+            {
+                return ((bool)(this["OverlayForStreams_ShowOnStart"]));
+            }
+            set
+            {
+                this["OverlayForStreams_ShowOnStart"] = value;
+            }
+        }
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]

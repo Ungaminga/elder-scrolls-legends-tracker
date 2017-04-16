@@ -252,6 +252,7 @@ namespace ESLTracker.ViewModels
 
             this.OverlayWindows.Add(new OverlayToolbar());
             this.OverlayWindows.Add(new DeckOverlay());
+            this.OverlayWindows.Add(new DeckOverlayForStreams());
             this.OverlayWindows.CollectionChanged += (s, e) => RaisePropertyChangedEvent(nameof(OverlayWindows));
         }
 

@@ -210,6 +210,9 @@
     <Compile Include="DeckOverlay.xaml.cs">
       <DependentUpon>DeckOverlay.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DeckOverlayForStreams.xaml.cs">
+      <DependentUpon>DeckOverlayForStreams.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GameStatistics.xaml.cs">
       <DependentUpon>GameStatistics.xaml</DependentUpon>
     </Compile>
@@ -512,6 +515,10 @@
     <Page Include="DeckOverlay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DeckOverlayForStreams.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="GameStatistics.xaml">
       <SubType>Designer</SubType>
