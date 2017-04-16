@@ -1125,6 +1125,48 @@
   <ItemGroup>
     <Resource Include="Resources\Cards\heroicrebirth.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Cards\Astrid.png" />
+    <Resource Include="Resources\Cards\bloodpactmessenger.png" />
+    <Resource Include="Resources\Cards\bloodsorceress.png" />
+    <Resource Include="Resources\Cards\brotherhoodsanctuary.png" />
+    <Resource Include="Resources\Cards\brotherhoodslayer.png" />
+    <Resource Include="Resources\Cards\chanterofakatosh.png" />
+    <Resource Include="Resources\Cards\cicerothebetrayer.png" />
+    <Resource Include="Resources\Cards\corsairship.png" />
+    <Resource Include="Resources\Cards\daggersinthedark.png" />
+    <Resource Include="Resources\Cards\darkguardian.png" />
+    <Resource Include="Resources\Cards\eclipsebaroness.png" />
+    <Resource Include="Resources\Cards\falkreathdefiler.png" />
+    <Resource Include="Resources\Cards\fellthemighty.png" />
+    <Resource Include="Resources\Cards\fleshsculpture.png" />
+    <Resource Include="Resources\Cards\garnag,darkadherent.png" />
+    <Resource Include="Resources\Cards\grandball.png" />
+    <Resource Include="Resources\Cards\Gravesinger.png" />
+    <Resource Include="Resources\Cards\gristlehidedreugh.png" />
+    <Resource Include="Resources\Cards\knifetothethroat.png" />
+    <Resource Include="Resources\Cards\knightofthehour.png" />
+    <Resource Include="Resources\Cards\littlegirl.png" />
+    <Resource Include="Resources\Cards\markedman.png" />
+    <Resource Include="Resources\Cards\palaceconspirator.png" />
+    <Resource Include="Resources\Cards\penitusoculatusagent.png" />
+    <Resource Include="Resources\Cards\protectoroftheinnocent.png" />
+    <Resource Include="Resources\Cards\quicksilvercrossbow.png" />
+    <Resource Include="Resources\Cards\sanctuarypet.png" />
+    <Resource Include="Resources\Cards\sanctuaryraid.png" />
+    <Resource Include="Resources\Cards\Shadowmere.png" />
+    <Resource Include="Resources\Cards\skeeverinfestation.png" />
+    <Resource Include="Resources\Cards\skoomaunderboss.png" />
+    <Resource Include="Resources\Cards\speakerterenus.png" />
+    <Resource Include="Resources\Cards\spearofembers.png" />
+    <Resource Include="Resources\Cards\stalkingshadowscale.png" />
+    <Resource Include="Resources\Cards\stealerofsecrets.png" />
+    <Resource Include="Resources\Cards\theblackdragon.png" />
+    <Resource Include="Resources\Cards\thenightmother.png" />
+    <Resource Include="Resources\Cards\underworldvigilante.png" />
+    <Resource Include="Resources\Cards\unstoppablerage.png" />
+    <Resource Include="Resources\Cards\wrathofsithis.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\GitVersionTask.3.6.5\build\dotnet\GitVersionTask.targets" Condition="Exists('..\packages\GitVersionTask.3.6.5\build\dotnet\GitVersionTask.targets')" />
   <Import Project="..\build\versions.targets" Condition="Exists('..\build\versions.targets')" />
