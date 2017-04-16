@@ -95,12 +95,13 @@ namespace ESLTracker.ViewModels.Decks
 
         public ICommand CommandDeleteDeck
         {
-            get
+            get { return new RelayCommand(new Action<object>(CommandDeleteDeckExecute)); }
+/*            get
             {
                 return new RelayCommand(
                     (object param) => CommandDeleteDeckExecute(new EditDeck() { Deck = SelectedDeck }),
                     (object param) => deckService.CanDelete(SelectedDeck));
-            }
+            }*/
         }
         #endregion
 
@@ -255,11 +256,11 @@ namespace ESLTracker.ViewModels.Decks
             }
         }
 
-        private void CommandDeleteDeckExecute(EditDeck editDeck)
+        private void CommandDeleteDeckExecute(object param)
         {
-            if (deckService.CanDelete(editDeck.Deck))
+            if (deckService.CanDelete(SelectedDeck))
             {
-                deckService.DeleteDeck(editDeck.Deck);
+                deckService.DeleteDeck(SelectedDeck);
             }
             trackerFactory.GetFileManager().SaveDatabase();
             ApplyFilter();

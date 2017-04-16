@@ -41,6 +41,8 @@ namespace ESLTracker.Utils
             {
                 return false;
             }
+            return true;
+            /*
             DeckDeleteMode deleteMode = trackerFactory.GetService<ISettings>().DeckDeleteMode;
             switch (deleteMode)
             {
@@ -52,7 +54,7 @@ namespace ESLTracker.Utils
                     return true;
                 default:
                     throw new NotImplementedException("Unknown delete mode");
-            }
+            }*/
         }
 
         public void DeleteDeck(Deck deck)
