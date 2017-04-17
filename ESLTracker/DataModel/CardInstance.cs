@@ -82,9 +82,11 @@ namespace ESLTracker.DataModel
         {
             get
             {
+                if (quantity == Least)
+                    return 1.0f;
                 if (quantity == 1 && Least == 0)
-                    return 0.2f;
-                return Least* 1.0f / quantity;
+                    return 0.6f;
+                return Least* 0.65f / quantity + 0.25f;
             }
         }
         private bool updated = false;
