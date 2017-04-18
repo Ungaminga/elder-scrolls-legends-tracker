@@ -4918,8 +4918,7 @@
             "attack": "0",
             "health": "0",
             "race": "",
-            "text": "Uses: 3. Activate: Shuffle all cards in your hand with Prophecy into your deck and draw that many cards. ",
-            "triggertype": "prophecy"
+            "text": "Uses: 3. Activate: Shuffle all cards in your hand with Prophecy into your deck and draw that many cards. "
         },
         {
             "id": "00f39958-52f0-11e3-8f96-0800200c9a66",
@@ -5893,8 +5892,7 @@
             "attack": "2",
             "health": "5",
             "race": "skeleton",
-            "text": "Guard, When your opponent draws a Prophecy from a rune being destroyed, draw a card.",
-            "triggertype": "prophecy"
+            "text": "Guard, When your opponent draws a Prophecy from a rune being destroyed, draw a card."
         },
         {
             "id": "9dde53af-31a1-4dbe-bd0d-d58af40fdaf0",
