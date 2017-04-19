@@ -17,7 +17,6 @@ namespace ESLTracker.DataModel
 
         public SerializableVersion Version { get; set; }
         public PropertiesObservableCollection<CardInstance> Cards { get; set; } = new PropertiesObservableCollection<CardInstance>();
-
         public DateTime CreatedDate { get; set; }
 
         private ITrackerFactory trackerFactory;

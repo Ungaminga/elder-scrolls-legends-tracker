@@ -48,7 +48,9 @@ namespace ESLTracker.Utils.DeckFileReader
         private static readonly string[] draw_from_deck = { "player played medallion_presentRight",
                     "player played deck_present ", // we need put space after because there are deck_present_fast which not had been handled
                     "player played mulligan_hand",
-                    "player played surgeStart_reactionPile" };
+                    "player played surgeStart_reactionPile",
+                    "player played multiPresent_hand"};
+
         public static void UpdateGui(HashSet<CardInstance> cards, bool sendRed) { cards.ForEach(c => c.SendCardUpdated(sendRed)); }
 
         private bool wait_for_prohpecy = false;
@@ -83,6 +85,11 @@ namespace ESLTracker.Utils.DeckFileReader
                     {
                         foreach (var currentCard in activeDeck)
                         {
+                            if (currentCard.tempCreated == true)
+                            {
+                                to_delete.Add(currentCard);
+                                continue;
+                            }
                             currentCard.resetPlayed();
                             cards.Add(currentCard);
                         }
@@ -107,6 +114,27 @@ namespace ESLTracker.Utils.DeckFileReader
                             int offset = f[i].IndexOf("card=") + ("card=").Length;
                             string played = f[i].Substring(offset);
 
+                            // Mechanic like Elusive Schemer
+                            if (draw_string == "player played multiPresent_hand")
+                            {
+                                CardInstance ToDeck = activeDeck.Where(ci => ci.Card.Name == played).
+                                    DefaultIfEmpty(CardInstance.Unknown).FirstOrDefault();
+                                if (ToDeck.Card.Name != "Unknown")
+                                    ToDeck.decPlayed();
+                                else
+                                {
+                                    Card card = TrackerFactory.DefaultTrackerFactory.GetCardsDatabase().FindCardByName(played);
+                                    if (card == Card.Unknown)
+                                        break;
+                                    ToDeck = new CardInstance(card);
+                                    ToDeck.tempCreated = true;
+                                    try { activeDeck.Add(ToDeck);} catch { }
+                                }
+
+                                cards.Add(ToDeck);
+                                break;
+                            }
+ 
                             // only for played prophecy spells
                             if (draw_string == "player played surgeStart_reactionPile")
                             {
@@ -114,6 +142,7 @@ namespace ESLTracker.Utils.DeckFileReader
                                 if (i == f.Count() - 1)
                                 {
                                     wait_for_prohpecy = true; // and apply prophecy wait reader
+                                    File.Delete(sent_path);
                                     return false;
                                 }
                                 var prophecy = f[i + 1];
@@ -123,14 +152,15 @@ namespace ESLTracker.Utils.DeckFileReader
                                     played = f[i+1].Substring(offset);
                                 }
                             }
+                            
                             CardInstance currentCard = activeDeck.Where(ci => ci.Card.Name == played).
                                 DefaultIfEmpty(CardInstance.Unknown).FirstOrDefault();
                             if (currentCard != CardInstance.Unknown)
                             {
                                 currentCard.incPlayed();
                                 cards.Add(currentCard);
-                                break;
                             }
+                            break;
                         }
                         new TriggerChanceUpdater.TriggerChanceUpdater(activeDeck, cards_silent);
                     }
@@ -222,6 +252,17 @@ namespace ESLTracker.Utils.DeckFileReader
                     return deck;
                 }
             return null;
+        }
+        private List<CardInstance> to_delete = new List<CardInstance>();
+        public void CleanupActiveDeck()
+        {
+            var cards = TrackerFactory.DefaultTrackerFactory.GetTracker().ActiveDeck.SelectedVersion.Cards;
+            foreach (var card_delete in to_delete)
+            {
+                cards.Remove(card_delete);
+            }
+            to_delete.Clear();
+
         }
     }
 }

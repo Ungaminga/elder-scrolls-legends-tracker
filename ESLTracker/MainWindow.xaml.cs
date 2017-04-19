@@ -129,6 +129,9 @@ namespace ESLTracker
                              DeckFileReader.UpdateGui(cards, true);
                              await Task.Delay(300);
                          }
+                         else
+                             dfr.CleanupActiveDeck();
+
                          // Stop red and update fields
                          DeckFileReader.UpdateGui(cards, false);
                          // Play silent (trigger chances)

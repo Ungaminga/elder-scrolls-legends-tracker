@@ -39,6 +39,7 @@ namespace ESLTracker.DataModel
         }
 
         Card card;
+        public bool tempCreated = false;
         [XmlIgnore]
         public Card Card
         {
@@ -58,6 +59,7 @@ namespace ESLTracker.DataModel
         public int Least { get { return quantity - played; } }
 
         public void incPlayed() { if (played != quantity) played++; }
+        public void decPlayed() { played--; }
         public void resetPlayed() { played = 0; }
 
         public int Quantity
