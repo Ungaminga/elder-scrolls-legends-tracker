@@ -46,11 +46,12 @@ namespace ESLTracker.Utils.DeckFileReader
         public bool isGameStarted() { return game_started; }
 
         private static readonly string[] draw_from_deck = { "player played medallion_presentRight",
-                    "player played deck_present",
+                    "player played deck_present ", // we need put space after because there are deck_present_fast which not had been handled
                     "player played mulligan_hand",
                     "player played surgeStart_reactionPile" };
         public static void UpdateGui(HashSet<CardInstance> cards, bool sendRed) { cards.ForEach(c => c.SendCardUpdated(sendRed)); }
 
+        private bool wait_for_prohpecy = false;
         public bool ReadSentFile(HashSet<CardInstance> cards, HashSet<CardInstance> cards_silent)
         {
             if (!File.Exists(sent_path))
@@ -71,6 +72,7 @@ namespace ESLTracker.Utils.DeckFileReader
                         if (i != f.Count() - 1)
                             i++;
                         game_started = true;
+                        wait_for_prohpecy = false;
                         break;
                     }
                 }
@@ -87,6 +89,7 @@ namespace ESLTracker.Utils.DeckFileReader
                         new TriggerChanceUpdater.TriggerChanceUpdater(activeDeck);
                         File.Delete(sent_path);
                         game_started = false;
+                        wait_for_prohpecy = false;
                         return true;
                     }
 
@@ -96,8 +99,11 @@ namespace ESLTracker.Utils.DeckFileReader
                     {
                         foreach (var draw_string in draw_from_deck)
                         {
-                            if (!f[i].Contains(draw_string))
+                            if (wait_for_prohpecy && f[i].Contains("someone played DefaultLerp card"))
+                                wait_for_prohpecy = false;
+                            else if (!f[i].Contains(draw_string))
                                 continue;
+
                             int offset = f[i].IndexOf("card=") + ("card=").Length;
                             string played = f[i].Substring(offset);
 
@@ -106,8 +112,11 @@ namespace ESLTracker.Utils.DeckFileReader
                             {
                                 // don't allow read if that called last one
                                 if (i == f.Count() - 1)
+                                {
+                                    wait_for_prohpecy = true; // and apply prophecy wait reader
                                     return false;
-                                    var prophecy = f[i + 1];
+                                }
+                                var prophecy = f[i + 1];
                                 if (prophecy.Contains("someone played DefaultLerp card"))
                                 {
                                     offset = f[i+1].IndexOf("card=") + ("card=").Length;
