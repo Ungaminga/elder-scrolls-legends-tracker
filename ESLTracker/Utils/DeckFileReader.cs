@@ -199,7 +199,7 @@ namespace ESLTracker.Utils.DeckFileReader
                 if (found == false)
                 {
                     Deck deck = Deck.CreateNewDeck(deck_name_no_path);
-                    deck.Type = DeckType.Constructed;
+                    deck.Type = deck_name_no_path == "arena" ? DeckType.VersusArena: DeckType.Constructed;
                     ImportForDeck(deck);
                     deck.Class = ClassAttributesHelper.getClassFromCards(deck.SelectedVersion.Cards);
                     TrackerFactory.DefaultTrackerFactory.GetTracker().Decks.Add(deck);
