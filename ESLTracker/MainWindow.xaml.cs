@@ -136,6 +136,7 @@ namespace ESLTracker
                          DeckFileReader.UpdateGui(cards, false);
                          // Play silent (trigger chances)
                          DeckFileReader.UpdateGui(cards_silent, false);
+                         TrackerFactory.DefaultTrackerFactory.GetTracker().UpdateActiveDeck();
                      });
                 }
                 await Task.Delay(dfr.isGameStarted() ? 100: 1000);

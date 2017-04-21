@@ -9,6 +9,7 @@ namespace ESLTracker.DataModel
     public interface ITracker
     {
         Deck ActiveDeck { get; set; }
+        void UpdateActiveDeck();
         ObservableCollection<Deck> Decks { get; set; }
         ObservableCollection<Game> Games { get; set; }
         List<Reward> Rewards { get; set; }

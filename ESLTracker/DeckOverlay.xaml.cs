@@ -34,7 +34,6 @@ namespace ESLTracker
             }
         }
 
-
         public DeckOverlay()
         {
             InitializeComponent();

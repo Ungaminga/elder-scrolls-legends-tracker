@@ -26,6 +26,21 @@ namespace ESLTracker.DataModel
 
         public string Name { get; set; }
 
+        public string NameWithQuantity
+        {
+            get
+            {
+                int qty_total = 0;
+                int qty_least = 0;
+                foreach (var card in SelectedVersion.Cards)
+                {
+                    if (card.tempCreated == false)
+                        qty_total += card.Quantity;
+                    qty_least += card.Least;
+                }
+                return string.Format("{0} ({1}/{2})", Name, qty_least, qty_total);
+            }
+        }
         [XmlIgnore]
         public DeckAttributes Attributes
         {

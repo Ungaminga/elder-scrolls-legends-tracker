@@ -57,8 +57,12 @@ namespace ESLTracker.DataModel
             {
                 activeDeck = value;
                 trackerFactory.GetMessanger().Send(new ActiveDeckChanged(value));
-                RaisePropertyChangedEvent(nameof(ActiveDeck));
+                UpdateActiveDeck();
             }
+        }
+        public void UpdateActiveDeck()
+        {
+            RaisePropertyChangedEvent(nameof(ActiveDeck));
         }
 
         private ITrackerFactory trackerFactory;
