@@ -43,6 +43,8 @@ namespace ESLTracker.Utils.DeckFileReader
         private string deck_selection;
 
         private bool game_started = false;
+        private bool muligan_ended = false;
+   
         public bool isGameStarted() { return game_started; }
 
         private static readonly string[] draw_from_deck = { "player played medallion_presentRight",
@@ -75,6 +77,7 @@ namespace ESLTracker.Utils.DeckFileReader
                             i++;
                         game_started = true;
                         wait_for_prohpecy = false;
+                        muligan_ended = false;
                         break;
                     }
                 }
@@ -99,7 +102,11 @@ namespace ESLTracker.Utils.DeckFileReader
                         wait_for_prohpecy = false;
                         return true;
                     }
-
+                    if (f[i].Contains("muligan ended"))
+                    {
+                        muligan_ended = true;
+                        continue;
+                    }
                     bool draw_found = false;
                     draw_from_deck.ForEach(draw_string => draw_found = draw_found || f[i].Contains(draw_string));
                     if (draw_found)
@@ -108,6 +115,8 @@ namespace ESLTracker.Utils.DeckFileReader
                         {
                             if (wait_for_prohpecy && f[i].Contains("someone played DefaultLerp card"))
                                 wait_for_prohpecy = false;
+                            else if (muligan_ended == false && f[i].Contains("player played mulligan_hand"))
+                                break;
                             else if (!f[i].Contains(draw_string))
                                 continue;
 
