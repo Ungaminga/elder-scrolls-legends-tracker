@@ -1,7 +1,7 @@
 {
-    "Version": "0.8",
-    "VersionInfo": "Dark Brotherhood",
-    "VersionDate": "2017-03-30T00:00:00.000Z",
+    "Version": "0.9",
+    "VersionInfo": "April 2017 Monthly Reward",
+    "VersionDate": "2017-01-05T00:00:00.000Z",
     "Cards": [
         {
             "id": "7e686205-20ce-11e5-867f-0800200c9a66",
@@ -6227,6 +6227,19 @@
             "health": "6",
             "race": "imperial",
             "text": "After you play an action, put a random action into your hand."
-        }
+        },
+		{
+			"id": "e62d3ccb-6650-11e6-bdf4-0800200c9a66",
+			"name": "Chaurus Breeding Pit",
+			"rarity": "Epic",
+			"isunique": false,
+			"type": "action",
+			"attributes": "agility",
+			"cost": "10",
+			"attack": "0",
+			"health": "0",
+			"race": "",
+			"text": "Summon a Chaurus Reaper in each lane."
+		}
     ]
 }
