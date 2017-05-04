@@ -11,7 +11,7 @@ namespace ESLTracker.DataModel
     {
 
         DeckClass deckClass;
-
+        
         public DeckAttributes()
         {
         }

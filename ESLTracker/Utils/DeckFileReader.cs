@@ -69,23 +69,45 @@ namespace ESLTracker.Utils.DeckFileReader
                                             ActiveDeck.SelectedVersion.Cards;
                 string[] f = File.ReadAllLines(sent_path);
                 int i = f.Count() - 1;
-                for (; i > 0; --i)
+                for (; i > -1; --i)
                 {
                     if (f[i].Contains("=== Started Match"))
                     {
-                        if (i != f.Count() - 1)
-                            i++;
                         game_started = true;
                         wait_for_prohpecy = false;
                         muligan_ended = false;
+
+                        Game game = new Game();
+                        game.Deck = TrackerFactory.DefaultTrackerFactory.GetTracker().
+                                            ActiveDeck;
+                        game.DeckId = TrackerFactory.DefaultTrackerFactory.GetTracker().
+                                            ActiveDeck.DeckId;
+                        game.DeckVersionId = TrackerFactory.DefaultTrackerFactory.GetTracker().
+                                            ActiveDeck.SelectedVersionId;
+                        string[] options= f[i].Split(';');
+
+                        game.OpponentName = options[2].Substring(" opponent = ".Length);
+                        DeckAttributes attr = (DeckAttributes)options[3].Substring(" opponent_deck = ".Length);
+                        game.OpponentClass = ClassAttributesHelper.FindClassByAttribute(attr).DefaultIfEmpty(DeckClass.Neutral).FirstOrDefault();
+                        game.Outcome = GameOutcome.Defeat;
+                        game.Type = GameType.PlayRanked; //options[4].Substring(" options = [game_mode] = ");
+                        game.OrderOfPlay = options[4].Substring(" first player = ".Length) == "You" ? OrderOfPlay.First: OrderOfPlay.Second;
+                        TrackerFactory.DefaultTrackerFactory.GetTracker().Games.Add(game);
+                        if (i != f.Count() - 1)
+                            i++;
                         break;
                     }
                 }
+                if (i < 0)
+                    i = 0;
                 string unused = "";
                 for (; i < f.Count(); ++i)
                 {
                     if (f[i].Contains("=== Ended Match"))
                     {
+                        if (TrackerFactory.DefaultTrackerFactory.GetTracker().Games.Count > 0)
+                            TrackerFactory.DefaultTrackerFactory.GetTracker().Games.Last<Game>().Outcome =
+                                f[i].Substring("=== Ended Match, you ".Length) == "lost.===" ? GameOutcome.Defeat : GameOutcome.Victory;
                         foreach (var currentCard in activeDeck)
                         {
                             if (currentCard.tempCreated == true)
