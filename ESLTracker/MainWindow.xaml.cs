@@ -149,7 +149,10 @@ namespace ESLTracker
             if (dfr.NeedToModifyDlls() == false)
                 return;
             
-            if (MessageBox.Show("This program needs to modify your game DLLs. It's legit.", "Modify your DLLs?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            if (MessageBox.Show("This program needs to modify your game DLLs. "+
+                "It's violates TES:L Terms of service. There are a bit risk of your account will be banned. "+
+                "If you are afraid so - use original tracker from @MarioZG.", "Modify your DLLs?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+
             {
                 try { File.Copy(".\\Resources\\TES-L-Modifided-dll\\game-src.dll", dfr.game_src_lib, true); }
                 catch (IOException e) {
@@ -158,6 +161,11 @@ namespace ESLTracker
                 }
 
                 MessageBox.Show("Restart your game now.");
+            }
+            else
+            {
+                System.Diagnostics.Process.Start("https://github.com/MarioZG/elder-scrolls-legends-tracker/releases");
+                ((App)Application.Current).CloseApplication();
             }
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
