@@ -214,7 +214,15 @@ namespace ESLTracker.Utils.DeckFileReader
             bool ret_value = false;
             foreach (string deck_name in Directory.GetFiles(decks_directory))
             {
-                string[] f = File.ReadAllLines(deck_name);
+                string[] f;
+                try
+                {
+                    f = File.ReadAllLines(deck_name);
+                }
+                catch
+                {
+                    return ret_value;
+                }
                 string deck_name_no_path = Path.GetFileNameWithoutExtension(deck_name);
                 bool found = false;
                 foreach (Deck itr in TrackerFactory.DefaultTrackerFactory.GetTracker().Decks)
