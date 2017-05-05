@@ -262,14 +262,14 @@ namespace ESLTracker.Utils.DeckFileReader
                 return false;
 
             // Using File.ReadLines().First() due to md5 software produces newline
-            String md5_orig = File.ReadLines(".\\Resources\\TES-L-Modifided-dll\\md5-orig.txt").First();
+            String md5_new = File.ReadLines(".\\Resources\\TES-L-Modifided-dll\\md5.txt").First();
 
             var md5 = MD5.Create();
             var stream = File.OpenRead(game_src_lib);
             String hash = BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", "");
             stream.Close();
  
-            if (hash == md5_orig)
+            if (hash != md5_new)
                 return true;
 
             return false;
