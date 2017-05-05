@@ -91,7 +91,7 @@ namespace ESLTracker.Utils.DeckFileReader
                         game.OpponentClass = ClassAttributesHelper.FindClassByAttribute(attr).DefaultIfEmpty(DeckClass.Neutral).FirstOrDefault();
                         game.Outcome = GameOutcome.Defeat;
                         game.Type = GameType.PlayRanked; //options[4].Substring(" options = [game_mode] = ");
-                        game.OrderOfPlay = options[4].Substring(" first player = ".Length) == "You" ? OrderOfPlay.First: OrderOfPlay.Second;
+                        game.OrderOfPlay = options[4].Substring(" first player = ".Length) == "you" ? OrderOfPlay.First: OrderOfPlay.Second;
                         TrackerFactory.DefaultTrackerFactory.GetTracker().Games.Add(game);
                         if (i != f.Count() - 1)
                             i++;
