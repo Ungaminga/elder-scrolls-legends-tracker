@@ -84,14 +84,25 @@ namespace ESLTracker.Utils.DeckFileReader
                                             ActiveDeck.DeckId;
                         game.DeckVersionId = TrackerFactory.DefaultTrackerFactory.GetTracker().
                                             ActiveDeck.SelectedVersionId;
-                        string[] options= f[i].Split(';');
+                        string[] options = f[i].Split(';');
 
                         game.OpponentName = options[2].Substring(" opponent = ".Length);
                         DeckAttributes attr = (DeckAttributes)options[3].Substring(" opponent_deck = ".Length);
                         game.OpponentClass = ClassAttributesHelper.FindClassByAttribute(attr).DefaultIfEmpty(DeckClass.Neutral).FirstOrDefault();
                         game.Outcome = GameOutcome.Defeat;
-                        game.Type = GameType.PlayRanked; //options[4].Substring(" options = [game_mode] = ");
-                        game.OrderOfPlay = options[4].Substring(" first player = ".Length) == "you" ? OrderOfPlay.First: OrderOfPlay.Second;
+                        game.OrderOfPlay = options[4].Substring(" first player = ".Length) == "you" ? OrderOfPlay.First : OrderOfPlay.Second;
+
+                        game.Type = GameType.PlayCasual;
+                        for (int option = 0; option < options.Length; ++option)
+                            if (options[option].Contains("[queueName] = "))
+                            {
+                                string queueName = options[option].Substring(" [queueName] = ".Length);
+                                if (queueName == "HydraOneVsOne")
+                                    game.Type = GameType.PlayRanked;
+                                else if (queueName == "HydraSinglePlayer")
+                                    game.Type = GameType.PlayCasual;
+                            }
+
                         TrackerFactory.DefaultTrackerFactory.GetTracker().Games.Add(game);
                         if (i != f.Count() - 1)
                             i++;
