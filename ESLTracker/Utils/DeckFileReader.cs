@@ -53,6 +53,10 @@ namespace ESLTracker.Utils.DeckFileReader
                     "player played surgeStart_reactionPile",
                     "player played multiPresent_hand"};
 
+        private static readonly string[] prophecy_draw = { "player played drag_drop_lane_01",
+            "someone played DefaultLerp"
+        };
+
         public static void UpdateGui(HashSet<CardInstance> cards, bool sendRed) { cards.ForEach(c => c.SendCardUpdated(sendRed)); }
 
         private bool wait_for_prohpecy = false;
@@ -141,12 +145,18 @@ namespace ESLTracker.Utils.DeckFileReader
                         continue;
                     }
                     bool draw_found = false;
+                    bool prophecy_found = false;
+                    if (wait_for_prohpecy)
+                    {
+                        prophecy_draw.ForEach(draw_string => prophecy_found = prophecy_found || f[i].Contains(draw_string));
+                        draw_found = prophecy_found;
+                    }
                     draw_from_deck.ForEach(draw_string => draw_found = draw_found || f[i].Contains(draw_string));
                     if (draw_found)
                     {
                         foreach (var draw_string in draw_from_deck)
                         {
-                            if (wait_for_prohpecy && f[i].Contains("someone played DefaultLerp card"))
+                            if (wait_for_prohpecy && prophecy_found)
                                 wait_for_prohpecy = false;
                             else if (muligan_ended == false && f[i].Contains("player played mulligan_hand"))
                                 break;
