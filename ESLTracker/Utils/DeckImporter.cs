@@ -106,7 +106,16 @@ namespace ESLTracker.Utils
         public void ImportFromFileProcess(string path = "deck.txt")
         {
             string full_path = Path.Combine(TrackerFactory.DefaultTrackerFactory.GetTracker().dfr.game_path, path);
-            ImportFromTextProcess(File.ReadAllText(full_path));
+            string import_data = "";
+            try
+            {
+                import_data = File.ReadAllText(full_path);
+            }
+            catch
+            {
+                return;
+            }
+            ImportFromTextProcess(import_data);
         }
         internal void CancelImport()
         {
