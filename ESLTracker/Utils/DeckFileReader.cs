@@ -51,7 +51,8 @@ namespace ESLTracker.Utils.DeckFileReader
                     "player played deck_present ", // we need put space after because there are deck_present_fast which not had been handled
                     "player played mulligan_hand",
                     "player played surgeStart_reactionPile",
-                    "player played multiPresent_hand"};
+                    "player played multiPresent_hand",
+                    "player played card_destroyed millDeath"};
 
         private static readonly string[] prophecy_draw = { "player played drag_drop_lane_01",
             "someone played DefaultLerp"
