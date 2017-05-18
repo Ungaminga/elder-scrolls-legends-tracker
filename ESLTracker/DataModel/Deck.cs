@@ -26,7 +26,7 @@ namespace ESLTracker.DataModel
 
         public string Name { get; set; }
 
-        public int hand = 1;
+        public int hand = 0;
         public string NameWithQuantity
         {
             get
