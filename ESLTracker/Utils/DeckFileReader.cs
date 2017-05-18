@@ -29,6 +29,7 @@ namespace ESLTracker.Utils.DeckFileReader
                 decks_directory = Path.Combine(game_path, "decks");
                 game_src_lib = Path.Combine(game_path, "The Elder Scrolls Legends_Data\\Managed\\game-src.dll");
                 deck_selection = Path.Combine(game_path, "deck_selection.txt");
+                cards_count = Path.Combine(game_path, "cards_count.txt");
             }
             catch (System.Exception ex)
             {
@@ -41,6 +42,7 @@ namespace ESLTracker.Utils.DeckFileReader
         private string decks_directory;
         public readonly string game_src_lib;
         private string deck_selection;
+        private string cards_count;
 
         private bool game_started = false;
         private bool muligan_ended = false;
@@ -134,6 +136,7 @@ namespace ESLTracker.Utils.DeckFileReader
                             currentCard.resetPlayed();
                             cards.Add(currentCard);
                         }
+                        TrackerFactory.DefaultTrackerFactory.GetTracker().ActiveDeck.hand = 0;
                         new TriggerChanceUpdater.TriggerChanceUpdater(activeDeck);
                         File.Delete(sent_path);
                         game_started = false;
@@ -324,6 +327,25 @@ namespace ESLTracker.Utils.DeckFileReader
             }
             to_delete.Clear();
 
+        }
+        public bool UpdateHandCount()
+        {
+            if (File.Exists(cards_count) == false)
+                return false;
+            string count = File.ReadAllText(cards_count);
+            File.Delete(cards_count);
+
+            ITracker tracker = TrackerFactory.DefaultTrackerFactory.GetTracker();
+            if (count != "" && tracker.ActiveDeck != null)
+            {
+                int c = Int32.Parse(count);
+                if (c != tracker.ActiveDeck.hand)
+                {
+                    tracker.ActiveDeck.hand = c;
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

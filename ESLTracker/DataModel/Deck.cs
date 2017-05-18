@@ -26,6 +26,7 @@ namespace ESLTracker.DataModel
 
         public string Name { get; set; }
 
+        public int hand = 1;
         public string NameWithQuantity
         {
             get
@@ -38,7 +39,11 @@ namespace ESLTracker.DataModel
                         qty_total += card.Quantity;
                     qty_least += card.Least;
                 }
-                return string.Format("{0} ({1}/{2})", Name, qty_least, qty_total);
+                if (hand != 0)
+                    return string.Format("{0} ({1}/{2}) hand - {3}", Name, qty_least, qty_total, hand);
+                else 
+                    return string.Format("{0} ({1}/{2})", Name, qty_least, qty_total);
+
             }
         }
         [XmlIgnore]

@@ -119,6 +119,7 @@ namespace ESLTracker
                     }
                         
                 }
+                bool update = dfr.UpdateHandCount();
                 if (cards.Count() > 0)
                 {
                     await mainWindow.Dispatcher.Invoke(async () =>
@@ -139,6 +140,9 @@ namespace ESLTracker
                          TrackerFactory.DefaultTrackerFactory.GetTracker().UpdateActiveDeck();
                      });
                 }
+                else if (update)
+                    TrackerFactory.DefaultTrackerFactory.GetTracker().UpdateActiveDeck();
+
                 await Task.Delay(dfr.isGameStarted() ? 100: 1000);
             }
         }
