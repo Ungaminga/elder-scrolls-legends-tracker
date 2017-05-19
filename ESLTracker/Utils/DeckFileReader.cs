@@ -332,18 +332,26 @@ namespace ESLTracker.Utils.DeckFileReader
         {
             if (File.Exists(cards_count) == false)
                 return false;
-            string count = File.ReadAllText(cards_count);
-            File.Delete(cards_count);
-
-            ITracker tracker = TrackerFactory.DefaultTrackerFactory.GetTracker();
-            if (count != "" && tracker.ActiveDeck != null)
+            try
             {
-                int c = Int32.Parse(count);
-                if (c != tracker.ActiveDeck.hand)
+                string count = File.ReadAllText(cards_count);
+                File.Delete(cards_count);
+
+                ITracker tracker = TrackerFactory.DefaultTrackerFactory.GetTracker();
+                if (count != "" && tracker.ActiveDeck != null)
                 {
-                    tracker.ActiveDeck.hand = c;
-                    return true;
+                    int c = Int32.Parse(count);
+                    if (c != tracker.ActiveDeck.hand)
+                    {
+                        tracker.ActiveDeck.hand = c;
+                        return true;
+                    }
                 }
+
+            }
+            catch
+            {
+
             }
             return false;
         }
