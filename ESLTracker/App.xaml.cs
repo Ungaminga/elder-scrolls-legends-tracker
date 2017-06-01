@@ -63,11 +63,6 @@ namespace ESLTracker
 
             CheckSingleInstance();
             CheckDataFile();
-            IVersionService vc = TrackerFactory.DefaultTrackerFactory.GetService<IVersionService>();
-            if (vc.IsNewCardsDBAvailable())
-            {
-                vc.GetLatestCardsDB();
-            }
         }
 
         private static void CheckDataFile()
