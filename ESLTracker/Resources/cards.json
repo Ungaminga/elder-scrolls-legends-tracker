@@ -1,6 +1,6 @@
 {
-    "Version": "0.9",
-    "VersionInfo": "April 2017 Monthly Reward",
+    "Version": "0.10",
+    "VersionInfo": "May 2017 Monthly Reward",
     "VersionDate": "2017-05-01T00:00:00.000Z",
     "Cards": [
         {
@@ -6240,6 +6240,19 @@
 			"health": "0",
 			"race": "",
 			"text": "Summon a Chaurus Reaper in each lane."
+		},
+		{
+			"id": "277bbf44-3f25-4fc5-96c9-6642aaa83de6",
+			"name": "Protector of the Mane",
+			"rarity": "Epic",
+			"isunique": false,
+			"type": "creature",
+			"attributes": "willpower",
+			"cost": "5",
+			"attack": "4",
+			"health": "4",
+			"race": "khajiit",
+			"text": "Drain, Guard. When you gain health, Protector of the Mane gains +1/+1."
 		}
     ]
 }
