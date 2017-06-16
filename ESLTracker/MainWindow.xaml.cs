@@ -74,6 +74,10 @@ namespace ESLTracker
                     }
                 });
                 await Task.Delay(1000);
+                var pr = winAPI.GetEslProcess();
+                if (pr != null && pr.MainModule != null)
+                    TrackerFactory.DefaultTrackerFactory.GetTracker().dfr.UpdateGamePath(System.IO.Path.GetDirectoryName(pr.MainModule.FileName));
+
             }
             mainWindow.Dispatcher.Invoke(() => {
                 foreach (Window w in mainWindow.DataContext.OverlayWindows)
@@ -158,7 +162,9 @@ namespace ESLTracker
                 "If you are afraid so - use original tracker from @MarioZG.", "Modify your DLLs?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
 
             {
-                try { File.Copy(".\\Resources\\TES-L-Modifided-dll\\game-src.dll", dfr.game_src_lib, true); }
+                try { File.Copy(".\\Resources\\TES-L-Modifided-dll\\game-src.dll", dfr.game_src_lib, true);
+                    File.Copy(".\\Resources\\TES-L-Modifided-dll-steam\\game-src.dll", dfr.game_src_lib_steam, true);
+                }
                 catch (IOException e) {
                     MessageBox.Show(e.Message);
                     return;

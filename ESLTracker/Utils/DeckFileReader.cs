@@ -22,25 +22,36 @@ namespace ESLTracker.Utils.DeckFileReader
             {
                 const string regdir =
                     @"HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\The Elder Scrolls Legends";
-
-                game_path = ((string)Registry.GetValue(regdir, "Path", "")).Replace("\"", "");
-                sent_path = Path.Combine(game_path, "sent.txt");
-                sent_unused = Path.Combine(game_path, "sent_unused.txt");
-                decks_directory = Path.Combine(game_path, "decks");
+                const string regdir2 = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 364470";
+                game_path = ((string)Registry.GetValue(regdir, "Path", ""));
+                game_path_steam = ((string)RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64).OpenSubKey(regdir2).GetValue("InstallLocation")).Replace("\"", "");
+                game_path = game_path.Replace("\"", "");
                 game_src_lib = Path.Combine(game_path, "The Elder Scrolls Legends_Data\\Managed\\game-src.dll");
-                deck_selection = Path.Combine(game_path, "deck_selection.txt");
-                cards_count = Path.Combine(game_path, "cards_count.txt");
+                game_src_lib_steam = Path.Combine(game_path_steam, "The Elder Scrolls Legends_Data\\Managed\\game-src.dll");
+                UpdateGamePath();
             }
             catch (System.Exception ex)
             {
                 throw ex;
             }
         }
-        public readonly string game_path;
+        public void UpdateGamePath(string _game_path=null)
+        {
+            if (_game_path != null)
+                game_path = _game_path;
+            sent_path = Path.Combine(game_path, "sent.txt");
+            sent_unused = Path.Combine(game_path, "sent_unused.txt");
+            decks_directory = Path.Combine(game_path, "decks");
+            deck_selection = Path.Combine(game_path, "deck_selection.txt");
+            cards_count = Path.Combine(game_path, "cards_count.txt");
+        }
+        public string game_path;
+        public string game_path_steam;
         private string sent_path;
         private string sent_unused;
         private string decks_directory;
         public readonly string game_src_lib;
+        public readonly string game_src_lib_steam;
         private string deck_selection;
         private string cards_count;
 
@@ -283,20 +294,32 @@ namespace ESLTracker.Utils.DeckFileReader
 
         public bool NeedToModifyDlls()
         {
-            if (File.Exists(game_src_lib) == false)
-                return false;
+            if (File.Exists(game_src_lib))
+            {
+                // Using File.ReadLines().First() due to md5 software produces newline
+                String md5_new = File.ReadLines(".\\Resources\\TES-L-Modifided-dll\\md5.txt").First();
 
-            // Using File.ReadLines().First() due to md5 software produces newline
-            String md5_new = File.ReadLines(".\\Resources\\TES-L-Modifided-dll\\md5.txt").First();
+                var md5 = MD5.Create();
+                var stream = File.OpenRead(game_src_lib);
+                String hash = BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", "");
+                stream.Close();
 
-            var md5 = MD5.Create();
-            var stream = File.OpenRead(game_src_lib);
-            String hash = BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", "");
-            stream.Close();
- 
-            if (hash != md5_new)
-                return true;
+                if (hash != md5_new)
+                    return true;
+            }
+            if (File.Exists(game_src_lib_steam))
+            {
+                // Using File.ReadLines().First() due to md5 software produces newline
+                String md5_new = File.ReadLines(".\\Resources\\TES-L-Modifided-dll-steam\\md5.txt").First();
 
+                var md5 = MD5.Create();
+                var stream = File.OpenRead(game_src_lib_steam);
+                String hash = BitConverter.ToString(md5.ComputeHash(stream)).Replace("-", "");
+                stream.Close();
+
+                if (hash != md5_new)
+                    return true;
+            }
             return false;
         }
         public Deck UpdateActiveDeck()

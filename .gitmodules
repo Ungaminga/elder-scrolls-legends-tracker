@@ -1,3 +1,6 @@
 [submodule "ESLTracker/Resources/TES-L-Modifided-dll"]
 	path = ESLTracker/Resources/TES-L-Modifided-dll
 	url = https://github.com/Ungaminga/TES-L-Modifided-dll
+[submodule "ESLTracker/Resources/TES-L-Modifided-dll-steam"]
+	path = ESLTracker/Resources/TES-L-Modifided-dll-steam
+	url = https://github.com/Ungaminga/TES-L-Modifided-dll-steam.git
