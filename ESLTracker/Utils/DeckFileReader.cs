@@ -23,11 +23,19 @@ namespace ESLTracker.Utils.DeckFileReader
                 const string regdir =
                     @"HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\The Elder Scrolls Legends";
                 const string regdir2 = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App 364470";
-                game_path = ((string)Registry.GetValue(regdir, "Path", ""));
-                game_path_steam = ((string)RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64).OpenSubKey(regdir2).GetValue("InstallLocation")).Replace("\"", "");
-                game_path = game_path.Replace("\"", "");
-                game_src_lib = Path.Combine(game_path, "The Elder Scrolls Legends_Data\\Managed\\game-src.dll");
-                game_src_lib_steam = Path.Combine(game_path_steam, "The Elder Scrolls Legends_Data\\Managed\\game-src.dll");
+                object obj = Registry.GetValue(regdir, "Path", "");
+                if (obj != null)
+                {
+                    game_path = (string)obj;
+                    game_path = game_path.Replace("\"", "");
+                    game_src_lib = Path.Combine(game_path, "The Elder Scrolls Legends_Data\\Managed\\game-src.dll");
+                }
+                using (var basekey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64))
+                    using (var subkey = basekey.OpenSubKey(regdir2))
+                    {
+                        game_path_steam = ((string)subkey.GetValue("InstallLocation")).Replace("\"", "");
+                        game_src_lib_steam = Path.Combine(game_path_steam, "The Elder Scrolls Legends_Data\\Managed\\game-src.dll");
+                    }
                 UpdateGamePath();
             }
             catch (System.Exception ex)
@@ -45,13 +53,13 @@ namespace ESLTracker.Utils.DeckFileReader
             deck_selection = Path.Combine(game_path, "deck_selection.txt");
             cards_count = Path.Combine(game_path, "cards_count.txt");
         }
-        public string game_path;
-        public string game_path_steam;
+        public string game_path = "";
+        public string game_path_steam = "";
         private string sent_path;
         private string sent_unused;
         private string decks_directory;
-        public readonly string game_src_lib;
-        public readonly string game_src_lib_steam;
+        public readonly string game_src_lib = "";
+        public readonly string game_src_lib_steam = "";
         private string deck_selection;
         private string cards_count;
 

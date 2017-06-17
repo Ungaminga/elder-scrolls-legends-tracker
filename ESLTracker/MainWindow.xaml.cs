@@ -162,8 +162,8 @@ namespace ESLTracker
                 "If you are afraid so - use original tracker from @MarioZG.", "Modify your DLLs?", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
 
             {
-                try { File.Copy(".\\Resources\\TES-L-Modifided-dll\\game-src.dll", dfr.game_src_lib, true);
-                    File.Copy(".\\Resources\\TES-L-Modifided-dll-steam\\game-src.dll", dfr.game_src_lib_steam, true);
+                try { if (dfr.game_src_lib != "") File.Copy(".\\Resources\\TES-L-Modifided-dll\\game-src.dll", dfr.game_src_lib, true);
+                    if (dfr.game_src_lib_steam != "")  File.Copy(".\\Resources\\TES-L-Modifided-dll-steam\\game-src.dll", dfr.game_src_lib_steam, true);
                 }
                 catch (IOException e) {
                     MessageBox.Show(e.Message);

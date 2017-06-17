@@ -70,11 +70,12 @@ namespace ESLTracker.Utils
         {
             string path = Environment.ExpandEnvironmentVariables(
                 @"%USERPROFILE%\AppData\LocalLow\Dire Wolf Digital\The Elder Scrolls_ Legends\LocalizationDB.db");
-            if (!File.Exists(path) || File.Open(path, FileMode.Open).Length == 0)
+            if (!File.Exists(path))
             {
                 path = Environment.ExpandEnvironmentVariables(
                                 @"%USERPROFILE%\AppData\LocalLow\Dire Wolf Digital\The Elder Scrolls_ Legends\LocalizationDB.Steam.db");
             }
+            
             SQLiteFactory factory = (SQLiteFactory)DbProviderFactories.GetFactory("System.Data.SQLite");
             using (SQLiteConnection connection = (SQLiteConnection)factory.CreateConnection())
             {

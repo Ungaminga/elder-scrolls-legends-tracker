@@ -333,9 +333,13 @@ namespace ESLTracker.Utils
 
         private SerializableVersion ReadCurrentFileVersionFromXML()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.Load(FullDataFilePath);
-            XmlNode versionNode = doc.SelectSingleNode("/Tracker/Version");
+            XmlNode versionNode = null;
+            if (System.IO.File.Exists(FullDataFilePath))
+            {
+                XmlDocument doc = new XmlDocument();
+                doc.Load(FullDataFilePath);
+                versionNode = doc.SelectSingleNode("/Tracker/Version");
+            }
 
             return ParseCurrentFileVersion(versionNode);
         }
