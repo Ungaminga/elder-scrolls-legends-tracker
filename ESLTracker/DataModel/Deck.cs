@@ -266,23 +266,31 @@ namespace ESLTracker.DataModel
             return type == DeckType.SoloArena || type == DeckType.VersusArena;
         }
 
+        private bool IsArenaRunFinished_last = false;
         public bool IsArenaRunFinished()
         {
+            bool finished = false;
             switch (this.Type)
             {
                 case DeckType.Constructed:
                     return false;
                 case DeckType.VersusArena:
-                    return
+                    finished = 
                         this.Victories == 7
-                        || this.Defeats + this.Disconnects == 3; 
+                        || this.Defeats + this.Disconnects == 3;
+                    break;
                 case DeckType.SoloArena:
-                    return
+                    finished = 
                         this.Victories == 9
                         || this.Defeats + this.Disconnects == 3;
+                    break;
                 default:
                     throw new NotImplementedException("Is arena run finished not dfined for type {" + Type + "}");
             }
+            if (IsArenaRunFinished_last != finished)
+                this.Name = this.Name + " " + this.CreatedDate;
+            IsArenaRunFinished_last = finished;
+            return finished;
         }
 
         public IEnumerable<Reward> GetArenaRewards()
