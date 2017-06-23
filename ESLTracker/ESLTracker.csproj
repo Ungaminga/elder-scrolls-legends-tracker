@@ -738,6 +738,7 @@
     <Resource Include="Resources\Cards\bonecolossus.png" />
     <Resource Include="Resources\Cards\bretonconjurer.png" />
     <Resource Include="Resources\Cards\brilliantexperiment.png" />
+    <Resource Include="Resources\Cards\brotherhoodassassin.png" />
     <Resource Include="Resources\Cards\brumaarmorer.png" />
     <Resource Include="Resources\Cards\brumaprofiteer.png" />
     <Resource Include="Resources\Cards\brutalashlander.png" />

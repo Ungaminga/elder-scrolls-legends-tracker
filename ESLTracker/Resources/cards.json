@@ -617,6 +617,19 @@
             "race": "",
             "text": "Draw a copy of a friendly creature."
         },
+		{
+			"id": "fd233441-0afb-11e5-b939-0800200c9a66",
+			"name": "Brotherhood Assassin",
+			"rarity": "Epic",
+			"isunique": false,
+			"type": "creature",
+			"attributes": "agility",
+			"cost": "1",
+			"attack": "3",
+			"health": "3",
+			"race": "",
+			"text": "Lethal, Summon: Draw a card."
+		},
         {
             "id": "086621f4-ff5d-11e4-b939-0800200c9a66",
             "name": "Bruma Armorer",
