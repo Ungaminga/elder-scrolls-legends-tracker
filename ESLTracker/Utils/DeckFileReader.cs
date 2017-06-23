@@ -240,12 +240,8 @@ namespace ESLTracker.Utils.DeckFileReader
                         }
                         new TriggerChanceUpdater.TriggerChanceUpdater(activeDeck, cards_silent);
                     }
-                    else
-                        unused += f[i] + "\n";
-
                 }
                 File.Delete(sent_path);
-                File.AppendAllText(sent_unused, unused);
             }
             catch
             {
