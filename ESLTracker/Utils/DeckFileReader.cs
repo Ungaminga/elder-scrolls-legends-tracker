@@ -73,7 +73,8 @@ namespace ESLTracker.Utils.DeckFileReader
                     "player played mulligan_hand",
                     "player played surgeStart_reactionPile",
                     "player played multiPresent_hand",
-                    "player played card_destroyed millDeath"};
+                    "player played card_destroyed millDeath",
+                    "player played SummonDeck"};
 
         private static readonly string[] prophecy_draw = { "player played drag_drop_lane_01",
             "someone played DefaultLerp"
@@ -221,7 +222,7 @@ namespace ESLTracker.Utils.DeckFileReader
                                     return false;
                                 }
                                 var prophecy = f[i + 1];
-                                if (prophecy.Contains("someone played DefaultLerp card"))
+                                if (prophecy.Contains(prophecy_draw[0]) || prophecy.Contains(prophecy_draw[1]))
                                 {
                                     offset = f[i+1].IndexOf("card=") + ("card=").Length;
                                     played = f[i+1].Substring(offset);
