@@ -288,7 +288,7 @@ namespace ESLTracker.DataModel
                     throw new NotImplementedException("Is arena run finished not dfined for type {" + Type + "}");
             }
             if (IsArenaRunFinished_last != finished)
-                this.Name = this.Name + " " + this.CreatedDate;
+                this.Name = "arena " + this.CreatedDate;
             IsArenaRunFinished_last = finished;
             return finished;
         }
