@@ -138,7 +138,6 @@ namespace ESLTracker.Utils.DeckFileReader
                 }
                 if (i < 0)
                     i = 0;
-                string unused = "";
                 for (; i < f.Count(); ++i)
                 {
                     if (f[i].Contains("=== Ended Match"))
@@ -299,6 +298,9 @@ namespace ESLTracker.Utils.DeckFileReader
 
         public bool NeedToModifyDlls()
         {
+            #if DEBUG
+            return false;
+            #endif
             if (File.Exists(game_src_lib))
             {
                 // Using File.ReadLines().First() due to md5 software produces newline
