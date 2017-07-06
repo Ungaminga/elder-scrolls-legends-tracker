@@ -6267,6 +6267,7 @@
 			"race": "khajiit",
 			"text": "Drain, Guard. When you gain health, Protector of the Mane gains +1/+1."
 		},
+
         {
             "id": "49d70144-81d0-11e6-ae22-56b6b6499611",
             "name": "Skyborn Dragon",
@@ -6405,6 +6406,7 @@
             "text": "Give a friendly creature +3/+3. It Battles your opponent's most powerful creature."
         },
         {
+            "id": "2180a106-8f53-11e6-ae22-56b6b6499611",
             "name": "Ironscale Dragon",
             "rarity": "Common",
             "isunique": false,
@@ -6532,6 +6534,7 @@
             "text": "Guard, Summon: Give all creatures in your discard pile +2/+2. Last Gasp: Draw a random creature from your discard pile."
         },
         {
+            "id": "2180a296-8f53-11e6-ae22-56b6b6499611",
             "name": "Swiftwing Dragon",
             "rarity": "Common",
             "isunique": false,
@@ -6644,6 +6647,7 @@
             "text": "Uses: Unlimited. Activate: A friendly creature becomes a Werewolf. Friendly Werewolves have +1/+1."
         },
         {
+            "id": "0c231803-4dd8-11e6-bdf4-0800200c9a66",
             "name": "Angry Villager",
             "rarity": "Common",
             "isunique": false,
@@ -6709,6 +6713,7 @@
             "text": "Level 1: Give an enemy creature -1/-1.\r\nLevel 2: Give an enemy creature -2/-2. \r\nLevel 3: Give all enemy creatures -2/-2."
         },
         {
+            "id": "979ba8a8-9bb1-11e6-80f5-76304dec7eb7",
             "name": "Draugr Sentry",
             "rarity": "Common",
             "isunique": false,
@@ -6771,6 +6776,7 @@
             "text": "Look at the top card of your deck. You may discard it. Draw a card."
         },
         {
+            "id": "5b56b000-f88f-11e6-bc64-92361f002671",
             "name": "Solitude Stalwart",
             "rarity": "Common",
             "isunique": false,
@@ -6809,6 +6815,7 @@
             "text": "When a creature eats Sweet Roll, heal that creature."
         },
         {
+            "id": "979b9110-9bb1-11e6-80f5-76304dec7eb7",
             "name": "Thalmor Soldier",
             "rarity": "Common",
             "isunique": false,
@@ -6938,6 +6945,7 @@
             "text": "+0/+1. Summon: Draw a card. The wielder has Cover until it attacks."
         },
         {
+            "id": "ef93d81c-02d6-4941-ac22-22cdd76a5ce2",
             "name": "Embassy Guard",
             "rarity": "Common",
             "isunique": false,
@@ -7044,6 +7052,7 @@
             "text": "When Raging Horker takes damage, it gains +1/+1."
         },
         {
+            "id": "f404c5dc-1a34-4d49-a6a9-6dd437df003c",
             "name": "Rallying Stormcloak",
             "rarity": "Common",
             "isunique": false,
@@ -7108,6 +7117,7 @@
             "text": "Slay: Give friendly Orcs +1/+1."
         },
         {
+            "id": "aab4a9a2-7dda-11e6-ae22-56b6b6499611",
             "name": "Stormcloak Skirmisher",
             "rarity": "Common",
             "isunique": false,
@@ -7133,6 +7143,7 @@
             "text": "Charge. Last Gasp: Put a 5/5 Stormcloak Battalion in your hand."
         },
         {
+            "id": "aad0bd70-09a5-11e7-9598-0800200c9a66",
             "name": "Stricken Draugr",
             "rarity": "Common",
             "isunique": false,
@@ -7351,6 +7362,7 @@
             "text": "Summon: Transform an enemy creature with 2 power or less into a Sweet Roll."
         },
         {
+            "id": "bd4d17d0-09bb-11e7-9598-0800200c9a66",
             "name": "Horned Helm",
             "rarity": "Common",
             "isunique": false,
@@ -7464,6 +7476,7 @@
             "text": "Activate: Equip a friendly creature with a Steel Dagger. If Skyforge has equipped 3 daggers, it changes into Underforge."
         },
         {
+            "id": "3487d1cd-42c0-48ec-808a-b6dd745bd335",
             "name": "Sovngarde Hero",
             "rarity": "Common",
             "isunique": false,
@@ -7589,6 +7602,7 @@
             "text": "Level 1:\r\nUnsummon an enemy creature with power 3 or less.\r\n\r\nLevel 2:\r\nUnsummon an enemy creature.\r\n\r\nLevel 3:\r\nUnsummon all enemy creatures in a lane."
         },
         {
+            "id": "744600f6-75fa-11e6-8b77-86f30ca893d3",
             "name": "Vigilant of Stendarr",
             "rarity": "Common",
             "isunique": false,
@@ -7666,6 +7680,7 @@
             "text": "Put a random action, item, and creature into your hand."
         },
         {
+            "id": "e1370a81-3b51-11e7-9598-0800200c9a66",
             "name": "Candlehearth Brawler",
             "rarity": "Rare",
             "isunique": false,
@@ -7678,6 +7693,7 @@
             "text": "Charge, Guard"
         },
         {
+            "id": "e62d3cc2-6650-11e6-bdf4-0800200c9a66",
             "name": "Chaurus",
             "rarity": "Common",
             "isunique": false,
@@ -7929,6 +7945,7 @@
             "text": "Move a friendly creature and give it +3/+0 and Drain this turn."
         },
         {
+            "id": "979ba1e6-9bb1-11e6-80f5-76304dec7eb7",
             "name": "Mystic Dragon",
             "rarity": "Common",
             "isunique": false,
@@ -7955,6 +7972,7 @@
             "text": "Summon: Heal a creature."
         },
         {
+            "id": "c6756d1c-9b9d-11e6-9f33-a24fc0d9649c",
             "name": "Revered Guardian",
             "rarity": "Common",
             "isunique": false,
@@ -8019,6 +8037,7 @@
             "text": "At the end of your turn, if three or more friendly creatures died this turn, summon a 2/2 Rallying Stormcloak."
         },
         {
+            "id": "b27e0c40-662f-11e6-bdf4-0800200c9a66",
             "name": "Stormcloak Battalion",
             "rarity": "Common",
             "isunique": false,
@@ -8109,6 +8128,7 @@
             "text": "Guard. Summon: Give your Activated supports an extra use. You may Activate your supports an extra time each turn."
         },
         {
+            "id": "04fd7e70-2551-11e7-9598-0800200c9a66",
             "name": "Cave Bear",
             "rarity": "Common",
             "isunique": false,
@@ -8145,6 +8165,7 @@
             "text": "Summon: Draw a card if you have two other  creatures."
         },
         {
+            "id": "5b44e8b0-09b6-11e7-9598-0800200c9a66",
             "name": "Hulking Draugr",
             "rarity": "Common",
             "isunique": false,
@@ -8223,6 +8244,7 @@
             "text": "Guard. Summon: +1/+1 if you have another creature with Guard."
         },
         {
+            "id": "b27e335a-662f-11e6-bdf4-0800200c9a66",
             "name": "Stoutheart Giant",
             "rarity": "Common",
             "isunique": false,
