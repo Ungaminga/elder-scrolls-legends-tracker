@@ -8,7 +8,7 @@
              xmlns:Behaviors="clr-namespace:ESLTracker.Utils.Behaviors"
              xmlns:AutoCompleteBehavior="clr-namespace:WPFTextBoxAutoComplete;assembly=WPFTextBoxAutoComplete"
              mc:Ignorable="d" 
-             x:Name="seletCard"
+             x:Name="selectCard"
              d:DesignWidth="300">
     <UserControl.Resources>
         <Style x:Key="ShadowText" TargetType="{x:Type Control}">
@@ -57,7 +57,7 @@
     <Button x:Name="LayoutRoot"
             HorizontalContentAlignment="Stretch" 
             ToolTipService.IsEnabled="{Binding CardInstance.Card, Converter={Converters:ObjectToBool}}"
-            Command="{Binding MouseLeftClick, ElementName=seletCard}" CommandParameter="{Binding CardInstance}"
+            Command="{Binding MouseLeftClick, ElementName=selectCard}" CommandParameter="{Binding CardInstance}"
             Visibility="{Binding CardInstance.Visible, Converter={Converters:BoolToVisibilty}}"
             Opacity="{Binding CardInstance.Opacity}">
         <DockPanel >

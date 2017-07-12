@@ -148,6 +148,7 @@ namespace ESLTracker.DataModel
             DateTime createdDateTime = tracker.GetDateTimeNow();
             CreatedDate = createdDateTime;
             this.trackerFactory = tracker;
+            this.IsHidden = false;
         }
 
         internal static Deck CreateNewDeck()

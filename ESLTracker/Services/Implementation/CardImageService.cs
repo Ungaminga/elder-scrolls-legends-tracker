@@ -32,7 +32,7 @@ namespace ESLTracker.Services
         public Media.Brush GetCardMiniature(Card card)
         {
             Logger.ConditionalTrace("Start GetCardMiniature");
-            Media.Brush returnValue = null;
+            Media.Brush returnValue = new Media.SolidColorBrush(Media.Color.FromArgb(255, 255, 255, 255));
             if((card != null) && (card != Card.Unknown))
             {
                 if (!CardMiniatureCache.ContainsKey(card.Id))
@@ -45,10 +45,6 @@ namespace ESLTracker.Services
                     CardMiniatureCache.Add(card.Id, brush);
                 }
                 returnValue = CardMiniatureCache[card.Id];
-            }
-            else
-            {
-                returnValue = new Media.SolidColorBrush(Media.Color.FromArgb(255, 255, 255, 255));
             }
             Logger.ConditionalTrace("End GetCardMiniature");
             return returnValue;

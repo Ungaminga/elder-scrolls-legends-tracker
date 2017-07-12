@@ -94,7 +94,7 @@ namespace ESLTracker.DataModel
         private bool updated = false;
         public string Updated
         {
-            get {return updated ? "Red" : "None";}
+            get {return updated ? "Red" : "Transparent"; }
         }
         public string TriggerChance = "";
         public string CardNameChance
