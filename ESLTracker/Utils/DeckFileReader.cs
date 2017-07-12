@@ -278,7 +278,20 @@ namespace ESLTracker.Utils.DeckFileReader
                 if (found == false)
                 {
                     Deck deck = Deck.CreateNewDeck(deck_name_no_path);
-                    deck.Type = deck_name_no_path == "arena" ? DeckType.VersusArena: DeckType.Constructed;
+                    switch (deck_name_no_path)
+                    {
+                        case "arena":       deck.Type = DeckType.VersusArena;   break;
+                        case "arena-solo":  deck.Type = DeckType.SoloArena;     break;
+                        default:            deck.Type = DeckType.Constructed;   break;
+                    }
+                    if (deck.Type != DeckType.Constructed)
+                    {
+                        string rank = File.ReadAllLines(Path.Combine(game_path, "decks", deck.Name + ".txt"))[0];
+                        if (rank.Contains("rank"))
+                        {
+                            deck.ArenaRank = (DataModel.Enums.ArenaRank)Int32.Parse(rank.Substring("rank=".Length));
+                        }
+                    }
                     ImportForDeck(deck);
                     deck.Class = ClassAttributesHelper.getClassFromCards(deck.SelectedVersion.Cards);
                     TrackerFactory.DefaultTrackerFactory.GetTracker().Decks.Add(deck);
@@ -290,9 +303,19 @@ namespace ESLTracker.Utils.DeckFileReader
         }
         private void ImportForDeck(Deck deck)
         {
+            string path = Path.Combine("decks", deck.Name + ".txt");
+
+            // We need skip first line of arena deck file because it contains an arena rank.
+            if (deck.Type != DeckType.Constructed)
+            {
+                string correct_path = Path.Combine(game_path, path);
+                var lines = File.ReadAllLines(correct_path);
+                File.WriteAllLines(correct_path, lines.Skip(1).ToArray());
+            }
+
             DeckImporter deckImporter = new DeckImporter();
             deckImporter.Cards = new List<CardInstance>();
-            deckImporter.ImportFromFileProcess(Path.Combine("decks", deck.Name+".txt"));
+            deckImporter.ImportFromFileProcess(path);
             deck.SelectedVersion.Cards = new PropertiesObservableCollection<CardInstance>(deckImporter.Cards);
         }
 
