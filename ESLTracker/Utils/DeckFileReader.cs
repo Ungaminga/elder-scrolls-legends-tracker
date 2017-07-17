@@ -118,9 +118,14 @@ namespace ESLTracker.Utils.DeckFileReader
                         game.OpponentClass = ClassAttributesHelper.FindClassByAttribute(attr).DefaultIfEmpty(DeckClass.Neutral).FirstOrDefault();
                         game.Outcome = GameOutcome.Defeat;
                         game.OrderOfPlay = options[4].Substring(" first player = ".Length) == "you" ? OrderOfPlay.First : OrderOfPlay.Second;
-
                         game.Type = GameType.PlayCasual;
+                        game.PlayerRank = (PlayerRank)Int32.Parse(options[5].Substring(" rank = ".Length));
+                        string opponent_rank = options[6].Substring(" opponent_rank = ".Length);
+                        if (opponent_rank != "")
+                            game.OpponentRank = (PlayerRank)Int32.Parse(opponent_rank);
+
                         for (int option = 0; option < options.Length; ++option)
+                        {
                             if (options[option].Contains("[queueName] = "))
                             {
                                 string queueName = options[option].Substring(" [queueName] = ".Length);
@@ -129,7 +134,7 @@ namespace ESLTracker.Utils.DeckFileReader
                                 else if (queueName == "HydraSinglePlayer")
                                     game.Type = GameType.PlayCasual;
                             }
-
+                        }
                         TrackerFactory.DefaultTrackerFactory.GetTracker().Games.Add(game);
                         if (i != f.Count() - 1)
                             i++;
